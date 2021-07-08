@@ -22,6 +22,8 @@
 
 ## 設計書
 
+https://docs.google.com/document/d/1REwwUAoJdaamk6Wos8ny8ixdC3zZihjAwVhaHyZDWxQ/edit
+
 ## チャレンジ要素一覧
 
 https://docs.google.com/spreadsheets/d/1L39yMH1laDAo_EBAk94yGIzvk6ZYqR7n6Sy17o7DooM/edit#gid=0
