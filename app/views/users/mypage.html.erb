@@ -1,0 +1,7 @@
+<%= attachment_image_tag @user, :image, size: "420x280" %>
+<%= @user.name %>
+<%= @user.email %>
+<%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-secondary" %>
+<%= current_user.goal %>
+<%= current_user.goal_limit %>
+<%= link_to "編集する", users_goal_edit_path, class:"btn btn-primary" %>

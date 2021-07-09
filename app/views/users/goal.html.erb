@@ -1,0 +1,5 @@
+<%= form_with model:@user_new, url:users_goal_path, method: :post,local:true do |f| %>
+  <%= f.text_field :goal, {style: "display: inline-block;"} %>
+  <%= f.date_select :goal_limit, {style: "display: inline-block;"} %>
+  <%= f.submit '新規登録' %>
+<% end %>

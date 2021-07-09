@@ -1,0 +1,6 @@
+<% @blogs.each do |blog| %>
+  <%= blog.title %>
+  <%= link_to user_path(blog.user_id) do %>
+    <%= blog.user.name %>
+  <% end %>
+<% end %>
