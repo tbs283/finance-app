@@ -1,5 +1,32 @@
-<% if user_signed_in? %>
-    <%= current_user.goal %>
-    <%= current_user.goal_limit %>
-    <%= link_to "編集する", users_goal_edit_path, class:"btn btn-primary" %>
-<% end %>
+<div class="container">
+    <div class="law">
+        <% if user_signed_in? %>
+            <div class="col-lg-6">
+                <%= current_user.goal %>
+                <%= current_user.goal_limit %>
+                <%= link_to "編集する", users_goal_edit_path, class:"btn btn-primary" %>
+            </div>
+            <div class="col-lg-6"></div>
+        <% else %>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br>
+                登録済みの方<%= link_to "ログイン", new_user_session_path %>
+            </div>
+            <div class="col-lg-2"></div>
+        <% end %>
+    </div>
+    <div class="law">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <% @blog_ranks.each do |blog| %>
+                <%= link_to blog_path(blog.id) do %>
+                    <%= blog.title %>
+                <% end %>
+                <%= blog.user.image %>
+                <%= blog.user.name %>
+            <% end %>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>

@@ -3,4 +3,5 @@
   <%= link_to user_path(blog.user_id) do %>
     <%= blog.user.name %>
   <% end %>
+  <p><%= link_to "#{blog.comments.count} コメント", blog_path(blog.id) %></p>
 <% end %>

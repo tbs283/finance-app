@@ -1,0 +1,2 @@
+module ExpenseGenresHelper
+end

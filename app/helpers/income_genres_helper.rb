@@ -1,0 +1,2 @@
+module IncomeGenresHelper
+end

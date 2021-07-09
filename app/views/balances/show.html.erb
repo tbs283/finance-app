@@ -1,0 +1,17 @@
+<%= form_with model:@income_new, url:user_balance_expenses_path(current_user, @balance.id), local: true do |f| %>
+  <%= f.number_field :amount %>
+  <%= f.submit '収入を登録' %>
+<% end %>
+
+<%= form_with model:@expense_new, url:user_balance_income_path(current_user, @balance.id), local: true do |f| %>
+  <%= f.number_field :amount %>
+  <%= f.submit '支出を登録' %>
+<% end %>
+
+<% @balance.incomes.each do |income| %>
+    <%= income.amount %>
+<% end %>
+
+<% @balance.expenses.each do |expense| %>
+    <%= expense.amount %>
+<% end %>

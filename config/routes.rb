@@ -10,8 +10,16 @@ Rails.application.routes.draw do
   get "mypage" => 'users#mypage'
   post 'users/goal' => 'users#create'
   patch 'users/goal' => 'users#update'
-  resources :users, :only => [:show, :edit]
-  resources :blogs
+    resources :blogs, only: [:new, :create, :index, :show, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
+  resources :users, only: [:show, :edit] do
+    resources :balances, only: [:edit, :create, :index, :show, :destroy] do
+      resources :expenses, only: [:new, :create, :destroy]
+      resources :incomes, only: [:new, :create, :destroy]
+    end
+  end
   
   devise_scope :user do
     get 'users/index', to: 'users/registrations#index'
