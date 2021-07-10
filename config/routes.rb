@@ -15,10 +15,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
   resources :users, only: [:show, :edit] do
-    resources :balances, only: [:edit, :create, :index, :show, :destroy] do
-      resources :expenses, only: [:new, :create, :destroy]
-      resources :incomes, only: [:new, :create, :destroy]
-    end
+    resources :balances, only: [:edit, :create, :index, :show, :new, :destroy] 
   end
   
   devise_scope :user do
