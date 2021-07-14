@@ -1,4 +1,4 @@
-<%= form_with model: @user, url:users_goal_path, method: :patch, local:true do |f| %>
+<%= form_with model: @user, url:user_path(current_user), method: :patch, local:true do |f| %>
   <%= f.attachment_field :image %>
   <%= f.text_field :name %>
   <%= f.submit '変更内容を保存' %>

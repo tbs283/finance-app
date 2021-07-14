@@ -1,7 +1,9 @@
 <% @blogs.each do |blog| %>
-  <%= blog.title %>
+  <%= link_to "#{blog.title}", blog_path(blog.id) %>
+  <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %>
   <%= link_to user_path(blog.user_id) do %>
     <%= blog.user.name %>
   <% end %>
-  <p><%= link_to "#{blog.comments.count} コメント", blog_path(blog.id) %></p>
+  <p><%= blog.comments.count %>コメント</p>
+  <p><%= blog.created_at %></p>
 <% end %>

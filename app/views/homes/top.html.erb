@@ -1,30 +1,56 @@
 <div class="container">
     <div class="law">
-        <% if user_signed_in? %>
-            <div class="col-lg-6">
-                <%= current_user.goal %>
-                <%= current_user.goal_limit %>
-                <%= link_to "編集する", users_goal_edit_path, class:"btn btn-primary" %>
-            </div>
-            <div class="col-lg-6"></div>
-        <% else %>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br>
-                登録済みの方<%= link_to "ログイン", new_user_session_path %>
-            </div>
-            <div class="col-lg-2"></div>
-        <% end %>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <% if user_signed_in? && Goal.exists? %>
+                <h4>目標金額　<%= @last_goal.goal_amount.to_s(:delimited, delimiter: ',') %>円</h4>
+                <h4>現在の貯金額　<%= @savings.to_s(:delimited, delimiter: ',') %>円</h4>
+                <h4>目標達成まで残り　<%= @to_goal.to_s(:delimited, delimiter: ',') %>円</h4>
+                <h4>目標達成期限まで残り<%= @days_left %>日</h4>
+                <%= link_to "編集する", edit_goal_path(@last_goal), class:"btn btn-primary" %>
+            <% elsif user_signed_in? %>
+                <h3>現在の貯金額　<%= @savings.to_s(:delimited, delimiter: ',') %>円</h3>
+                <h3>収入金額 <%= @incomes.to_s(:delimited, delimiter: ',') %>円</h3>
+                <h3>支出金額 <%= @expenses.to_s(:delimited, delimiter: ',') %>円</h3>
+                <!--<h4>目標は設定されていません。</h4>-->
+                <!--<h6>設定する場合は<%# link_to "こちら", new_user_goal_path(current_user) %></h6>-->
+            <% else %>
+                <h3>登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
+                <h3>登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
+            <% end %>
+        </div>
+        <div class="col-lg-4"></div>
     </div>
+    
     <div class="law">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <% @blog_ranks.each do |blog| %>
-                <%= link_to blog_path(blog.id) do %>
-                    <%= blog.title %>
-                <% end %>
-                <%= blog.user.image %>
-                <%= blog.user.name %>
+            <h5>新着ブログ</h5>
+            <% @new_blog.first(8).each do |blog| %>
+                <div>
+                    <%= link_to blog_path(blog.id) do %>
+                        <%= blog.title %>
+                    <% end %>
+                    <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %>
+                    <%= link_to "#{blog.user.name}", user_path(blog.user_id) %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    
+     <div class="law">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h5>人気のブログ</h5>
+            <% @blog_ranks.first(8).each do |blog| %>
+                <div>
+                    <%= link_to blog_path(blog.id) do %>
+                        <%= blog.title %>
+                    <% end %>
+                    <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %>
+                    <%= link_to "#{blog.user.name}", user_path(blog.user_id) %>
+                </div>
             <% end %>
         </div>
         <div class="col-lg-1"></div>

@@ -5,10 +5,7 @@ class UsersController < ApplicationController
   
   def mypage
     @user = current_user
-  end
-  
-  def goal
-    @user_new = User.new
+    @last_goal = Goal.where(user_id: current_user.id).last
   end
   
   def create
@@ -18,10 +15,6 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
-  end
-  
-  def goal_edit
     @user = current_user
   end
   

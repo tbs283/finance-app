@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.order(created_at: :desc)
   end
   
   def show
@@ -20,6 +20,12 @@ class BlogsController < ApplicationController
   end
 
   def edit
+  end
+  
+  def destroy
+    blog = Blog.find(params[:id])
+    blog.destroy
+    redirect_to blogs_path
   end
   
   private

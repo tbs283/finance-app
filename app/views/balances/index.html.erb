@@ -2,23 +2,27 @@
   <div class="row">
     <div class='col-lg-1'></div>
     <div class='col-lg-4'>
-      <%= form_with model:@balance_new, url:user_balances_path(current_user), local: true do |f| %>
+      <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
         <table>
           <tr>
             <h3>収入</h3>
             <%= f.hidden_field :balance, :value => 0 %>
           </tr>
-          <tr>
-            <th><%= f.label :period, "日付" %></th>
-            <td><%= f.date_select :period %></td>
-          </tr>
+          <!--<tr>
+            <th><%# f.label :period, "日付" %></th>
+            <td><%# f.date_select :period %></td>
+          </tr>-->
           <tr>
             <th><%= f.label :amount, "金額" %></th>
             <td><%= f.number_field :amount %></td>
           </tr>
-          <tr>
-            <th><%= f.label :income_genre_id, "項目" %></th>
+          <!--<tr>
+            <th><%# f.label :income_genre_id, "項目" %></th>
             <td></td>
+          </tr>-->
+          <tr>
+            <th><%= f.label :description, "説明" %></th>
+            <td><%= f.text_field :description %></td>
           </tr>
           <tr>
             <th></th>
@@ -29,23 +33,27 @@
     </div>
     <div class='col-lg-2'></div>
     <div class='col-lg-4'>
-      <%= form_with model:@balance_new, url:user_balances_path(current_user), local: true do |f| %>
+      <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
         <table>
           <tr>
             <h3>支出</h3>
             <%= f.hidden_field :balance, :value => 1 %>
           </tr>
-          <tr>
-            <th><%= f.label :period, "日付" %></th>
-            <td><%= f.date_select :period %></td>
-          </tr>
+          <!--<tr>
+            <th><%# f.label :period, "日付" %></th>
+            <td><%# f.date_select :period %></td>
+          </tr>-->
           <tr>
             <th><%= f.label :amount, "金額" %></th>
             <td><%= f.number_field :amount %></td>
           </tr>
-          <tr>
-            <th><%= f.label :expense_genre_id, "項目" %></th>
+          <!--<tr>
+            <th><%# f.label :expense_genre_id, "項目" %></th>
             <td></td>
+          </tr>-->
+          <tr>
+            <th><%= f.label :description, "説明" %></th>
+            <td><%= f.text_field :description %></td>
           </tr>
           <tr>
             <th></th>
@@ -72,17 +80,17 @@
           <h5>収入</h5>
         </tr>
         <tr>
-          <th>日付</th>
-          <th>項目</th>
+          <!--<th>日付</th>-->
+          <!--<th>項目</th>-->
           <th>金額</th>
           <th>詳細</th>
         </tr>
         <% @incomes.each do |income| %>
           <tr>
-            <td><%= income.period %></td>
-            <td></td>
+            <!--<td><%# income.period %></td>-->
+            <!--<td></td>-->
             <td><%= income.amount %></td>
-            <td></td>
+            <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary" %></td>
           </tr>
         <% end %>
       </table>
@@ -94,17 +102,17 @@
           <h5>支出</h5>
         </tr>
         <tr>
-          <th>日付</th>
-          <th>項目</th>
+          <!--<th>日付</th>-->
+          <!--<th>項目</th>-->
           <th>金額</th>
           <th>詳細</th>
         </tr>
         <% @expenses.each do |expense| %>
           <tr>
-            <td><%= expense.period %></td>
-            <td></td>
+            <!--<td><%# expense.period %></td>-->
+            <!--<td></td>-->
             <td><%= expense.amount %></td>
-            <td></td>
+            <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary" %></td>
           </tr>
         <% end %>
       </table>
