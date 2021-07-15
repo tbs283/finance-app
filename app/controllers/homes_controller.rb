@@ -5,7 +5,9 @@ class HomesController < ApplicationController
     if user_signed_in? && Goal.exists?
       @last_goal = Goal.where(user_id: current_user.id).last
       # @days_left = (@last_goal.goal_limit-Date.current-1).to_i
-      @savings = current_user.balances.where(balance: 0).sum(:amount)-current_user.balances.where(balance: 1).sum(:amount)
+      @incomes = current_user.balances.where(balance: 0).sum(:amount)
+      @expenses = current_user.balances.where(balance: 1).sum(:amount)
+      @savings = @incomes - @expenses
       if @last_goal.goal_amount - @savings.to_i < 0
         redirect_to goals_select_path
       else

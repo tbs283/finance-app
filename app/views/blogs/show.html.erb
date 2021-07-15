@@ -1,54 +1,56 @@
-<div class>
-  <p>タイトル：<%= @blog.title %></p>
-  <p>投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d') %></p>
-  <p>コンテンツ：<%= @blog.content %></p>
-  <p>ユーザーネーム：<%= @blog.user.name %></p>
-  <p>投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @blog.user == current_user %>
-    <%= link_to "削除", blog_path(@blog), method: :delete %>
-    <%= link_to "編集", edit_blog_path(@blog) %>
-  <% end %>
-  <% if user_signed_in? %>
-    <div class="comments">
-      <p>コメント件数：<%= @blog.comments.count %></p>
-      <% @blog.comments.each do |comment| %>
-        <%= comment.user.name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+<div class="container">
+  <div class"row">
+    <div class="col-lg-10">
+      <p>タイトル：<%= @blog.title %></p>
+      <p>投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d') %></p>
+      <p>コンテンツ：<%= @blog.content %></p>
+      <p>ユーザーネーム：<%= @blog.user.name %></p>
+      <p>投稿日時：<%= @blog.created_at.strftime('%Y/%m/%d') %></p>
+      <% if @blog.user == current_user %>
+        <%= link_to "削除", blog_path(@blog), method: :delete %>
+        <%= link_to "編集", edit_blog_path(@blog) %>
       <% end %>
-    </div>
-    <div class="new-comment">
-      <%= form_with(model:[@blog, @comment], local: true) do |f| %>
-        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
-    </div>
-    <div>
-      <% if @blog.favorited_by?(current_user) %>
-        <p>
-          <%= link_to blog_favorites_path(@blog), method: :delete do %>
-            ♥<%= @blog.favorites.count %> いいね
+      <% if user_signed_in? %>
+        <div class="comments">
+          <p>コメント件数：<%= @blog.comments.count %></p>
+          <% @blog.comments.each do |comment| %>
+            <%= comment.user.name %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %></br>
           <% end %>
-        </p>
+        </div>
+        <div class="new-comment">
+          <%= form_with(model:[@blog, @comment], local: true) do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+        <div>
+          <% if @blog.favorited_by?(current_user) %>
+            <p>
+              <%= link_to blog_favorites_path(@blog), method: :delete do %>
+                ♥<%= @blog.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to blog_favorites_path(@blog), method: :post do %>
+                ♡<%= @blog.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+        </div>
       <% else %>
-        <p>
-          <%= link_to blog_favorites_path(@blog), method: :post do %>
-            ♡<%= @blog.favorites.count %> いいね
+        <div class="comments">
+          <p>コメント件数：<%= @blog.comments.count %></p>
+          <% @blog.comments.each do |comment| %>
+            <%= comment.user.name %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
           <% end %>
-        </p>
+        </div>
+        <div>
+          ♥<%= @blog.favorites.count %> いいね
+        </div>
       <% end %>
     </div>
-  <% else %>
-    <div class="comments">
-      <p>コメント件数：<%= @blog.comments.count %></p>
-      <% @blog.comments.each do |comment| %>
-        <%= comment.user.name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <% end %>
-    </div>
-    <div>
-      ♥<%= @blog.favorites.count %> いいね
-    </div>
-    
-  <% end %>
-  
+  </div>
 </div>

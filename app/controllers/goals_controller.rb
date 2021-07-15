@@ -4,25 +4,31 @@ class GoalsController < ApplicationController
   end
   
   def create
-    goal_new = Goal.new(
+    @goal_new = Goal.new(
       goal_amount: goal_params[:goal_amount]
       )
-    goal_new.user_id = current_user.id
-    goal_new.save
-    redirect_to root_path
+    @goal_new.user_id = current_user.id
+    if @goal_new.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
   
   def goalselect
   end
   
   def edit
-    @goal = current_user.goal
+    @last_goal = Goal.find(params[:id])
   end
   
   def update
-    goal = current_user.goal
-    goal.update(goal_params)
-    redirect_to mypage_path
+    goal = Goal.find(params[:id])
+    if goal.update(goal_params)
+      redirect_to mypage_path
+    else
+      render :edit
+    end
   end
   
   def remove

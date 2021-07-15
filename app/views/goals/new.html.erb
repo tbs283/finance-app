@@ -1,5 +1,22 @@
-<%= form_with model:@goal_new, url:goals_path, method: :post,local:true do |f| %>
-  <%= f.number_field :goal_amount, {style: "display: inline-block;"} %>
-  <%# f.date_select :goal_limit, {style: "display: inline-block;"} %>
-  <%= f.submit '新規登録' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+      <h2 class="text-center">目標登録</h2>
+      <%= form_with model:@goal_new, url:goals_path, method: :post,local:true do |f| %>
+        <div class="field" class="form-group">
+          <%= f.label :goal_amount, "目標金額:", class: "control-label" %>
+          <%= f.number_field :goal_amount, {style: "display: inline-block;"} %>
+        </div>
+        <!--<div class="field" class="form-group">-->
+          <%# f.label :goal_limit, "目標期限", class: "control-label" %>
+          <%# f.date_select :goal_limit, {style: "display: inline-block;"} %>
+        <!--</div>-->
+        <div class="actions">
+          <%= f.submit '新規登録', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+</div>
