@@ -64,6 +64,7 @@
     </div>
     <div class='col-lg-1'></div>
   </div>
+  
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
@@ -80,6 +81,7 @@
           <h5>収入</h5>
         </tr>
         <tr>
+          <th>投稿日時</th>
           <!--<th>日付</th>-->
           <!--<th>項目</th>-->
           <th>金額</th>
@@ -87,43 +89,14 @@
         </tr>
         <% @incomes.each do |income| %>
           <tr>
+            <td><%= income.created_at.strftime('%Y/%m/%d') %></td>
             <!--<td><%# income.period %></td>-->
             <!--<td></td>-->
             <td><%= income.amount %></td>
             <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary" %></td>
+            <td><%= link_to "削除", balance_path(income), method: :delete, class:"btn btn-primary" %></td>
           </tr>
         <% end %>
-      </table>
-    </div>
-    <div class="col-lg-2"></div>
-    <div class="col-lg-4">
-      <table>
-        <tr>
-          <h5>支出</h5>
-        </tr>
-        <tr>
-          <!--<th>日付</th>-->
-          <!--<th>項目</th>-->
-          <th>金額</th>
-          <th>詳細</th>
-        </tr>
-        <% @expenses.each do |expense| %>
-          <tr>
-            <!--<td><%# expense.period %></td>-->
-            <!--<td></td>-->
-            <td><%= expense.amount %></td>
-            <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary" %></td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="col-lg-1"></div>
-  </div>
-  
-  <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-4">
-      <table>
         <tr>
           <th>収入合計</th>
           <td><%= @income_sum %></td>
@@ -134,6 +107,26 @@
     <div class="col-lg-4">
       <table>
         <tr>
+          <h5>支出</h5>
+        </tr>
+        <tr>
+          <th>投稿日時</th>
+          <!--<th>日付</th>-->
+          <!--<th>項目</th>-->
+          <th>金額</th>
+          <th>詳細</th>
+        </tr>
+        <% @expenses.each do |expense| %>
+          <tr>
+            <td><%= expense.created_at.strftime('%Y/%m/%d') %></td>
+            <!--<td><%# expense.period %></td>-->
+            <!--<td></td>-->
+            <td><%= expense.amount %></td>
+            <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary" %></td>
+            <td><%= link_to "削除", balance_path(expense), method: :delete, class:"btn btn-primary" %></td>
+          </tr>
+        <% end %>
+        <tr>
           <th>支出合計</th>
           <td><%= @expense_sum %></td>
         </tr>
@@ -141,4 +134,3 @@
     </div>
     <div class="col-lg-1"></div>
   </div>
-</div>

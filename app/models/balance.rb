@@ -1,6 +1,6 @@
 class Balance < ApplicationRecord
   belongs_to :user
-  has_many :incomes, dependent: :destroy
-  has_many :expenses, dependent: :destroy
+  # belongs_to :expense_genre
+  # belongs_to :income_genre
   enum balance:  {収入: 0, 支出: 1}
 end

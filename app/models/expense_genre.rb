@@ -1,5 +1,5 @@
 class ExpenseGenre < ApplicationRecord
-  belongs_to :balance
+  # has_many :balances, dependent: :destroy
   enum name:{
     食費: 0,
     住居費: 1,

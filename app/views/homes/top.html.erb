@@ -6,14 +6,14 @@
                 <h4>目標金額　<%= @last_goal.goal_amount.to_s(:delimited, delimiter: ',') %>円</h4>
                 <h4>現在の貯金額　<%= @savings.to_s(:delimited, delimiter: ',') %>円</h4>
                 <h4>目標達成まで残り　<%= @to_goal.to_s(:delimited, delimiter: ',') %>円</h4>
-                <h4>目標達成期限まで残り<%= @days_left %>日</h4>
+                <!--<h4>目標達成期限まで残り<%# @days_left %>日</h4>-->
                 <%= link_to "編集する", edit_goal_path(@last_goal), class:"btn btn-primary" %>
             <% elsif user_signed_in? %>
                 <h3>現在の貯金額　<%= @savings.to_s(:delimited, delimiter: ',') %>円</h3>
                 <h3>収入金額 <%= @incomes.to_s(:delimited, delimiter: ',') %>円</h3>
                 <h3>支出金額 <%= @expenses.to_s(:delimited, delimiter: ',') %>円</h3>
-                <!--<h4>目標は設定されていません。</h4>-->
-                <!--<h6>設定する場合は<%# link_to "こちら", new_user_goal_path(current_user) %></h6>-->
+                <h4>目標は設定されていません。</h4>
+                <h6>設定する場合は<%= link_to "こちら", new_goal_path %></h6>
             <% else %>
                 <h3>登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
                 <h3>登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>

@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   }
   
   get "mypage" => 'users#mypage'
-  resources :goal, :only => [:new, :create, :edit, :update]
-  resources :blogs, only: [:new, :create, :index, :show, :destroy] do
+  get "goals/select" => 'goals#goalselect'
+  delete 'goals/destroy_all' => 'goals#remove'
+  resources :goals, :only => [:new, :create, :edit, :update]
+  resources :blogs, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end

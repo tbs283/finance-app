@@ -24,7 +24,19 @@ class BalancesController < ApplicationController
       description: balance_params[:description]
       )
     balance_new.user_id = current_user.id
-    balance_new.save
+    balance_new.save!
+    redirect_to balances_path
+  end
+  
+  def update
+    balance = Balance.find(params[:id])
+    balance.update!(balance_params)
+    redirect_to balance_path(balance)
+  end
+  
+  def destroy
+    balance = Balance.find(params[:id])
+    balance.destroy
     redirect_to balances_path
   end
   

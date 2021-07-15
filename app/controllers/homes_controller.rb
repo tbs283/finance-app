@@ -4,12 +4,12 @@ class HomesController < ApplicationController
     @new_blog = Blog.all.order(created_at: :desc)
     if user_signed_in? && Goal.exists?
       @last_goal = Goal.where(user_id: current_user.id).last
-      @days_left = (@last_goal.goal_limit-Date.current-1).to_i
+      # @days_left = (@last_goal.goal_limit-Date.current-1).to_i
       @savings = current_user.balances.where(balance: 0).sum(:amount)-current_user.balances.where(balance: 1).sum(:amount)
-      if current_user.goal - @savings.to_i < 0
-        redirect_to new_goal_path
+      if @last_goal.goal_amount - @savings.to_i < 0
+        redirect_to goals_select_path
       else
-        @to_goal = current_user.goal - @savings.to_i
+        @to_goal = @last_goal.goal_amount - @savings.to_i
       end
       @to_goal = @last_goal.goal_amount.to_i - @savings.to_i
     elsif user_signed_in?
