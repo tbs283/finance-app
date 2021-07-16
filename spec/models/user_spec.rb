@@ -1,21 +1,11 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  before do
-    @user = FactoryBot.build(:user)
-  end
-
+RSpec.describe User,"ユーザーモデルに関するテスト",type: :model do
+  
   describe 'ユーザー新規登録' do
-    it "nameが空だと登録できない" do
-      @user.name = ""
-      @user.valid?
-      expect(@user.errors.full_messages).to include "name can't be blank"
-    end
-    it "emailが空では登録できない" do
-      @user.email = ""
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Email can't be blank"
+    it "有効な投稿内容の場合は保存されるか" do
+      expect(FactoryBot.user(:user)).to be_valid
     end
   end
 end

@@ -2,13 +2,17 @@ require 'rails_helper'
 
 describe 'ホームのテスト' do
   let!(:goal) { create(:goal, goal_amount:'100000') }
+  
   describe '目標設定画面(new_goal_path)のテスト' do
     before do
       visit new_goal_path
     end
     context '表示の確認' do
-      it '投稿ボタンが表示されているか' do
-        expect(page).to have_button '投稿'
+      it "blogの投稿フォームが表示されているか" do
+        expect(page).to have_field 'goal[goal_amount]'
+      end
+      it '登録ボタンが表示されているか' do
+        expect(page).to have_button '登録'
       end
       it 'new_goal_pathが"/goals/new"であるか' do
         expect(current_path).to eq('/goals/new')
@@ -25,7 +29,7 @@ describe 'ホームのテスト' do
 
   describe '目標編集画面(edit_goal_path)のテスト' do
     before do
-      visit edit_goal_path
+      visit edit_goal_path(goal)
     end
     context '表示の確認' do
       it 'edit_goal_pathが"/goals/:id/edit"であるか' do

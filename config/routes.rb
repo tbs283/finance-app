@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   resources :users, :only => [:show, :edit, :update]
-  resources :balances, :only => [:edit, :create, :index, :show, :new, :update, :destroy]
+  resources :balances, :only => [:edit, :create, :index, :show, :update, :destroy]
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to:'homes#top'
