@@ -80,8 +80,6 @@ ActiveRecord::Schema.define(version: 2021_07_12_132305) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "goal"
-    t.date "goal_limit"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

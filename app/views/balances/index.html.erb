@@ -1,11 +1,11 @@
-<div class="container">
-  <div class="row">
-    <% if @balance_new.errors.any? %>
+  　 <% if @balance_new.errors.any? %>
       <%= @balance_new.errors.count %>件のエラーが発生しました
       <% @balance_new.errors.full_messages.each do |message| %>
         <%= message %>
       <% end %>
     <% end %>
+<div class="container">
+  <div class="row">
     <div class='col-lg-1'></div>
     <div class='col-lg-4 mt-3'>
       <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
