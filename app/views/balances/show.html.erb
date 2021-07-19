@@ -4,9 +4,9 @@
     <div class="col-lg-6">
       <%= @balance.balance %>の詳細
       <%= form_with model:@balance, url:balance_path, local:true do |f| %>
-        <div class="field">
-          <%= @balance.period %> → <%= f.date_field :period %>
-        </div>
+        <!--<div class="field">-->
+        <!--  <%# @balance.period %> → <%# f.date_field :period %>-->
+        <!--</div>-->
         <div class="field">
           <%= @balance.amount %> → <%= f.text_field :amount %>
         </div>
