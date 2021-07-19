@@ -1,4 +1,4 @@
-  　 <% if @balance_new.errors.any? %>
+  　<% if @balance_new.errors.any? %>
       <%= @balance_new.errors.count %>件のエラーが発生しました
       <% @balance_new.errors.full_messages.each do |message| %>
         <%= message %>
@@ -16,10 +16,10 @@
               <%= f.hidden_field :balance, :value => 0 %>
             </tr>
           </thead>
-          <!--<tr>
-            <th><%# f.label :period, "日付" %></th>
-            <td><%# f.date_select :period %></td>
-          </tr>-->
+          <!--<tr>-->
+          <!--  <th><%# f.label :period, "日付" %></th>-->
+          <!--  <td><%# f.date_field :period %></td>-->
+          <!--</tr>-->
           <tbody>
             <tr>
               <th><%= f.label :amount, "金額" %></th>
@@ -55,10 +55,10 @@
               <%= f.hidden_field :balance, :value => 1 %>
             </tr>
           </thead>
-          <!--<tr>
-            <th><%# f.label :period, "日付" %></th>
-            <td><%# f.date_select :period %></td>
-          </tr>-->
+          <!--<tr>-->
+          <!--  <th><%# f.label :period, "日付" %></th>-->
+          <!--  <td><%# f.date_field :period %></td>-->
+          <!--</tr>-->
           <tbody>
             <tr>
               <th><%= f.label :amount, "金額" %></th>
@@ -102,7 +102,7 @@
       <table class="text-center table tbody-bordered table-hover table-sm">
         <thead class="thead-dark">
           <tr>
-            <th>登録日時</th>
+            <th>登録日</th>
             <!--<th>日付</th>-->
             <!--<th>項目</th>-->
             <th>金額</th>
@@ -137,7 +137,7 @@
       <table class="text-center table tbody-bordered table-hover table-sm">
         <thead class="thead-dark">
           <tr>
-            <th>投稿日時</th>
+            <th>登録日</th>
             <!--<th>日付</th>-->
             <!--<th>項目</th>-->
             <th>金額</th>
@@ -169,3 +169,4 @@
     </div>
     <div class="col-lg-1"></div>
   </div>
+</div>

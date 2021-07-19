@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :balances, dependent: :destroy
   has_many :goals, dependent: :destroy
   attachment :image
+  validates :name, presence: true
 end

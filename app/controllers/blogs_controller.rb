@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
     @blog_new = Blog.new(blog_params)
     @blog_new.user_id = current_user.id
     if @blog_new.save
-      redirect_to blog_path(blog_new.id)
+      redirect_to blog_path(@blog_new)
     else
       render :new
     end
@@ -29,7 +29,7 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
-      redirect_to blog_path(blog)
+      redirect_to blog_path(@blog)
     else
       render :edit
     end

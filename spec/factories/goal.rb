@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :goal do
-    goal_amount {1000000}
+    goal_amount {  Faker::Commerce.price * 100 }
   end
 end

@@ -1,50 +1,36 @@
 require 'rails_helper'
 
 describe '収支のテスト' do
-  let!(:balance) { create(:balance, amount:'10000',balance:'1',description:'description') }
+  let!(:user) { create(:user, name:'test',email: "test@test",password:'111111',password_confirmation:"111111") }
+  let!(:balance) { create(:balance, user_id: user.id,amount:10000,balance: 1,description:'description') }
 
+  before do
+    visit new_user_session_path
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[password]', with: user.password
+    click_button 'Log in'
+  end
+  
   describe '収支一覧/登録画面(balances_path)のテスト' do
     before do
       visit balances_path
     end
     context '一覧表示とリンクの確認' do
       it "balanceの一覧表示(tableタグ)と投稿フォームが同一画面に表示されているか" do
-        expect(page).to have_selector 'table'
+        expect(page).to have_selector 'h5', text: '収入を登録'
         expect(page).to have_field 'balance[amount]'
         expect(page).to have_field 'balance[description]'
       end
       it "balanceの金額を表示し、詳細・削除のリンクが表示されているか" do
-        (1..5).each do |i|
-          Book.create(amount:'10000'+i.to_s,)
-        end
-        visit balances_path
-        Balance.all.each_with_index do |balance,i|
-          j = i * 3
-          expect(page).to have_content balance.amount
-          # Showリンク
-          show_link = find_all('a')[j]
-          expect(show_link.native.inner_text).to match(/show/i)
-          expect(show_link[:href]).to eq balance_path(balance)
-          # Destroyリンク
-          show_link = find_all('a')[j+2]
-          expect(show_link.native.inner_text).to match(/destroy/i)
-          expect(show_link[:href]).to eq balance_path(balance)
-        end
+        Balance.create(user_id: user.id,amount:10000,balance: 1,description:'description')
+        expect(page).to have_link '削除'
+        expect(page).to have_link '詳細'
       end
       it '新規登録ボタンが表示されているか' do
         expect(page).to have_button '新規登録'
       end
       it 'balances_pathが"/balances"であるか' do
         expect(current_path).to eq('/balances')
-      end
-    end
-    context '投稿処理のテスト' do
-      it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'balance[balance]', with: 0
-        fill_in 'balance[amount]', with: Faker::Lorem.characters(number:5)
-        fill_in 'balance[description]', with: Faker::Lorem.characters(number:5)
-        click_button '投稿'
-        expect(page).to have_current_path balances_path
       end
     end
     context 'balance削除のテスト' do
@@ -74,15 +60,17 @@ describe '収支のテスト' do
         expect(page).to have_button '保存'
       end
     end
+    
     context 'balance削除のテスト' do
       it 'balanceの削除' do
         expect{ balance.destroy }.to change{ Balance.count }.by(-1)
       end
     end
+    
     context '更新処理に関するテスト' do
       it '更新後のリダイレクト先は正しいか' do
-        fill_in 'balance[amount]', with: Faker::Lorem.characters(number:5)
-        fill_in 'balance[description]', with: Faker::Lorem.characters(number:20)
+        fill_in 'balance[amount]', with: Faker::Commerce.price * 100 
+        fill_in 'balance[description]', with: Faker::Lorem.characters(number:10)
         click_button '保存'
         expect(page).to have_current_path balance_path(balance)
       end

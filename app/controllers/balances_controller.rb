@@ -22,6 +22,7 @@ class BalancesController < ApplicationController
       # period: balance_params[:period],
       balance: balance_params[:balance].to_i,
       amount: balance_params[:amount],
+      period: balance_params[:period],
       description: balance_params[:description]
       )
     @balance_new.user_id = current_user.id
@@ -40,8 +41,8 @@ class BalancesController < ApplicationController
   
   def update
     @balance = Balance.find(params[:id])
-    if @balance.update!(balance_params)
-      redirect_to balance_path(balance)
+    if @balance.update(balance_params)
+      redirect_to balance_path(@balance)
     else
       render :show
     end
