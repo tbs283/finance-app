@@ -6,7 +6,7 @@
       <%= form_with model:@last_goal, url:goal_path, method: :patch,local:true do |f| %>
         <div class="field" class="form-group">
           <%= f.label :goal_amount, "目標金額", class: "control-label" %>:
-          <%= f.number_field :goal_amount, {style: "display: inline-block;"} %>
+          <%= f.number_field :goal_amount, {style: "display: inline-block;"} %>円
         </div>
         <!--<div class="field" class="form-group">
           <%# f.label :goal_limit, "目標期限", class: "control-label" %>:
