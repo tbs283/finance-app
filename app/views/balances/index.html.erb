@@ -16,20 +16,20 @@
               <%= f.hidden_field :balance, :value => 0 %>
             </tr>
           </thead>
-          <!--<tr>-->
-          <!--  <th><%# f.label :period, "日付" %></th>-->
-          <!--  <td><%# f.date_field :period %></td>-->
-          <!--</tr>-->
+          <tr>
+            <th><%= f.label :period, "日付" %></th>
+            <td><%= f.date_field :period %></td>
+          </tr>
           <tbody>
             <tr>
               <th><%= f.label :amount, "金額" %></th>
               <td><%= f.number_field :amount %>円</td>
             </tr>
           </tbody>
-          <!--<tr>
-            <th><%# f.label :income_genre_id, "項目" %></th>
+          <tr>
+            <th><%= f.label :income_genre_id, "項目" %></th>
             <td></td>
-          </tr>-->
+          </tr>
           <tbody>
             <tr>
               <th><%= f.label :description, "説明" %></th>
@@ -55,20 +55,20 @@
               <%= f.hidden_field :balance, :value => 1 %>
             </tr>
           </thead>
-          <!--<tr>-->
-          <!--  <th><%# f.label :period, "日付" %></th>-->
-          <!--  <td><%# f.date_field :period %></td>-->
-          <!--</tr>-->
+          <tr>
+            <th><%= f.label :period, "日付" %></th>
+            <td><%= f.date_field :period %></td>
+          </tr>
           <tbody>
             <tr>
               <th><%= f.label :amount, "金額" %></th>
               <td><%= f.number_field :amount %>円</td>
             </tr>
           </tbody>
-          <!--<tr>
-            <th><%# f.label :expense_genre_id, "項目" %></th>
+          <tr>
+            <th><%= f.label :expense_genre_id, "項目" %></th>
             <td></td>
-          </tr>-->
+          </tr>
           <tbody>
             <tr>
               <th><%= f.label :description, "説明" %></th>
@@ -90,9 +90,21 @@
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
-      <h2 class="text-center mt-5 mb-5">現在の収支 <%= @saving.to_s(:delimited, delimiter: ',') %>円</h2>
+      <h2 class="text-center mt-5 mb-5">現在の貯金額 <%= @saving.to_s(:delimited, delimiter: ',') %>円</h2>
+      <h2 class="text-center mt-5 mb-5">この月の収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h2>
     </div>
     <div class="col-lg-2"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5">
+      <%= link_to "前の月",balances_path(month:@month.prev_month) %>
+    </div>
+    <div class="col-lg-5">
+      <%= link_to "次の月",balances_path(month:@month.next_month) %>
+    </div>
+    <div class="col-lg-1"></div>
   </div>
   
   <div class="row">
@@ -102,9 +114,8 @@
       <table class="text-center table tbody-bordered table-hover table-sm">
         <thead class="thead-dark">
           <tr>
-            <th>登録日</th>
-            <!--<th>日付</th>-->
-            <!--<th>項目</th>-->
+            <th>日付</th>
+            <th>項目</th>
             <th>金額</th>
             <th></th>
             <th></th>
@@ -113,9 +124,8 @@
         <tbody>
           <% @incomes.each do |income| %>
             <tr>
-              <td><%= income.created_at.strftime('%Y/%m/%d') %></td>
-              <!--<td><%# income.period %></td>-->
-              <!--<td></td>-->
+              <td><%= income.period %></td>
+              <td></td>
               <td><%= income.amount.to_s(:delimited, delimiter: ',') %>円</td>
               <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary btn-sm" %></td>
               <td><%= link_to "削除", balance_path(income), method: :delete, class:"btn btn-primary btn-sm" %></td>
@@ -137,9 +147,8 @@
       <table class="text-center table tbody-bordered table-hover table-sm">
         <thead class="thead-dark">
           <tr>
-            <th>登録日</th>
-            <!--<th>日付</th>-->
-            <!--<th>項目</th>-->
+            <th>日付</th>
+            <th>項目</th>
             <th>金額</th>
             <th></th>
             <th></th>
@@ -148,9 +157,8 @@
         <tbody>
           <% @expenses.each do |expense| %>
             <tr>
-              <td><%= expense.created_at.strftime('%Y/%m/%d') %></td>
-              <!--<td><%# expense.period %></td>-->
-              <!--<td></td>-->
+              <td><%= expense.period %></td>
+              <td></td>
               <td><%= expense.amount.to_s(:delimited, delimiter: ',') %>円</td>
               <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary btn-sm" %></td>
               <td><%= link_to "削除", balance_path(expense), method: :delete, class:"btn btn-primary btn-sm" %></td>

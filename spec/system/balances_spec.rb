@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe '収支のテスト' do
   let!(:user) { create(:user, name:'test',email: "test@test",password:'111111',password_confirmation:"111111") }
-  let!(:balance) { create(:balance, user_id: user.id,amount:10000,balance: 1,description:'description') }
+  let!(:balance) { create(:balance, user_id: user.id,amount:10000,period:'2021-11-29',balance: 1,description:'description') }
 
   before do
     visit new_user_session_path
@@ -20,11 +20,6 @@ describe '収支のテスト' do
         expect(page).to have_selector 'h5', text: '収入を登録'
         expect(page).to have_field 'balance[amount]'
         expect(page).to have_field 'balance[description]'
-      end
-      it "balanceの金額を表示し、詳細・削除のリンクが表示されているか" do
-        Balance.create(user_id: user.id,amount:10000,balance: 1,description:'description')
-        expect(page).to have_link '削除'
-        expect(page).to have_link '詳細'
       end
       it '新規登録ボタンが表示されているか' do
         expect(page).to have_button '新規登録'

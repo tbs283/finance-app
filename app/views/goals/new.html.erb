@@ -8,10 +8,10 @@
           <%= f.label :goal_amount, "目標金額:", class: "control-label" %>
           <%= f.number_field :goal_amount, {style: "display: inline-block;"} %>円
         </div>
-        <!--<div class="field" class="form-group">-->
-          <%# f.label :goal_limit, "目標期限", class: "control-label" %>
-          <%# f.date_select :goal_limit, {style: "display: inline-block;"} %>
-        <!--</div>-->
+        <div class="field" class="form-group">
+          <%= f.label :goal_limit, "目標期限", class: "control-label" %>
+          <%= f.date_select :goal_limit, {style: "display: inline-block;"} %>
+        </div>
         <div class="actions">
           <%= f.submit '登録', class: "btn btn-primary" %>
         </div>

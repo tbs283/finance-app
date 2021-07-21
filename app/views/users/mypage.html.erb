@@ -34,10 +34,10 @@
             <td><%= @last_goal.goal_amount.to_s(:delimited, delimiter: ',') %>円</td>
             <td><%= link_to "目標を編集する", edit_goal_path(@last_goal), class:"btn btn-primary btn-sm" %></td>
           </tr>
-          <!--<tr>-->
-          <!--  <th>目標期限</th>-->
-          <!--  <td><%# @last_goal.goal_limit %></td>-->
-          <!--</tr>-->
+          <tr>
+            <th>目標期限</th>
+            <td><%= @last_goal.goal_limit %></td>
+          </tr>
           <tbody>
             <tr>
               <th>現状収支</th>
