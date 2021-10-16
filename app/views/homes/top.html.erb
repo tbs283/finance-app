@@ -6,7 +6,7 @@
                 <h4 class="text-center">目標金額　<%= @last_goal.goal_amount.to_s(:delimited, delimiter: ',') %>円</h4>
                 <h4 class="text-center">現在の貯金額　<%= @savings.to_s(:delimited, delimiter: ',') %>円</h4>
                 <h4 class="text-center">目標達成まで残り　<%= @to_goal.to_s(:delimited, delimiter: ',') %>円</h4>
-                <h4 class="text-center">目標達成期限まで残り<%= @days_left %>日</h4>
+                <h4 class="text-center">目標達成期限まで残り<%# @days_left %>日</h4>
                 <h6  class="text-center">目標を変更するには<%= link_to "こちら", edit_goal_path(@last_goal) %></h6>
             <% elsif user_signed_in? %>
                 <h3 class="text-center">現在の貯金額　<%= @savings.to_s(:delimited, delimiter: ',') %>円</h3>

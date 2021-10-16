@@ -27,8 +27,8 @@
             </tr>
           </tbody>
           <tr>
-            <th><%= f.label :income_genre_id, "項目" %></th>
-            <td></td>
+            <th><%= f.label :genre, "項目" %></th>
+            <td><%= f.select :genre, [['給料', 10], ['その他', 9]], { include_blank: true} %></td>
           </tr>
           <tbody>
             <tr>

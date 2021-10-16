@@ -25,8 +25,8 @@ class BalancesController < ApplicationController
   
   def create
     @balance_new = Balance.new(
-      # period: balance_params[:period],
       balance: balance_params[:balance].to_i,
+      genre: balance_params[:genre].to_i,
       amount: balance_params[:amount],
       period: balance_params[:period],
       description: balance_params[:description]
@@ -63,6 +63,6 @@ class BalancesController < ApplicationController
   
   private
   def balance_params
-    params.require(:balance).permit(:user_id, :balance, :period, :expense_genre_id, :income_genre_id, :amount, :description)
+    params.require(:balance).permit(:user_id, :balance, :period, :genre, :amount, :description)
   end
 end

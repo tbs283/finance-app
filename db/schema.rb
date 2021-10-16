@@ -10,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_132305) do
+ActiveRecord::Schema.define(version: 2021_07_22_153655) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "period"
-    t.integer "expense_genre_id"
-    t.integer "income_genre_id"
     t.integer "amount"
     t.integer "balance"
     t.text "description"
+    t.integer "genre"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -43,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_132305) do
 
   create_table "expense_genres", force: :cascade do |t|
     t.integer "expense_id"
-    t.string "name"
+    t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_132305) do
 
   create_table "income_genres", force: :cascade do |t|
     t.integer "income_id"
-    t.string "name"
+    t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
