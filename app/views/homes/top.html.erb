@@ -3,10 +3,16 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4, mt-3 mb-3">
             <% if user_signed_in? %>
-                <h3 class="text-center"></h3>
-                <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
-                <h3 class="text-center">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</h3>
-                <h3 class="text-center">収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
+                <table>
+                    <thead><%= @month %></thead>
+                    <tbody>
+                        <tr><td class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</td></tr>
+                        <tr>
+                            <td class="text-center">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
+                            <td class="text-center">収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
+                        </tr>
+                    </tbody>
+                </table>
             <% else %>
                 <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
                 <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
