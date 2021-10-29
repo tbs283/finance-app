@@ -21,6 +21,9 @@
 //= require turbolinks
 //= require_tree .
 
+//= require Chart.bundle
+//= require chartkick
+
 $(document).ready(function () {
   $('.jquery').on('click', function(){
     $(this).css('color','red');

@@ -1,12 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <%= pie_chart @expenses.group(:amount).count %>
+        </div>
         <div class="col-lg-4, mt-3 mb-3">
             <% if user_signed_in? %>
                 <table>
                     <thead><%= @month %></thead>
                     <tbody>
-                        <tr><td class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</td></tr>
+                        <tr class="text-center"><td class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</td></tr>
                         <tr>
                             <td class="text-center">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
                             <td class="text-center">収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
@@ -18,12 +20,14 @@
                 <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
             <% end %>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <%= pie_chart @incomes.group(:amount).count %>
+        </div>
     </div>
     
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <h5>新着ブログ</h5>
             <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
                 <thead>
@@ -47,20 +51,18 @@
                             <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %></td>
                             <td><%= link_to "#{blog.user.name}", user_path(blog.user_id) %></td>
                             <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-                        </tr>
-                        <tr>
-                            <td><%= blog.content %></td>
+                            <td><%= blog.content.truncate(10) %></td>
                         </tr>
                     </tbody>
                 <% end %>
             </table>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-2"></div>
     </div>
 
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <h5>人気のブログ</h5>
             <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
                 <thead>
@@ -84,11 +86,14 @@
                             <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %></td>
                             <td><%= link_to "#{blog.user.name}", user_path(blog.user_id) %></td>
                             <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
+                            <td><%= blog.content.truncate(10) %></td>
                         </tr>
                     </tbody>
                 <% end %>
             </table>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-2">
+            <p><%= link_to "もっと見る", blogs_path %></p>
+        </div>
     </div>
 </div>

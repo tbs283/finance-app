@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_153655) do
+ActiveRecord::Schema.define(version: 2021_10_29_122501) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "user_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_07_22_153655) do
     t.integer "amount"
     t.integer "balance"
     t.text "description"
-    t.integer "genre"
+    t.integer "genre_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 2021_07_22_153655) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

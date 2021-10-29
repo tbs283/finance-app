@@ -1,0 +1,86 @@
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5">
+      <%= link_to "前の月",income_path(month:@month.prev_month) %>
+    </div>
+    <div class="col-lg-5">
+      <%= link_to "次の月",income_path(month:@month.next_month) %>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class='col-lg-3 mt-3'>
+      <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
+        <table>
+          <thead>
+            <tr>
+              <h5>収入を登録</h5>
+              <%= f.hidden_field :balance, :value => 0 %>
+            </tr>
+          </thead>
+          <tr>
+            <th><%= f.label :period, "日付" %></th>
+            <td><%= f.date_field :period %></td>
+          </tr>
+          <tbody>
+            <tr>
+              <th><%= f.label :amount, "金額" %></th>
+              <td><%= f.number_field :amount %>円</td>
+            </tr>
+          </tbody>
+          <tr>
+            <th><%= f.label :genre, "項目" %></th>
+            <td><%= f.select :genre, [['給料', 10], ['その他', 9]], { include_blank: true} %></td>
+          </tr>
+          <tbody>
+            <tr>
+              <th><%= f.label :description, "説明" %></th>
+              <td><%= f.text_field :description %></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th></th>
+              <td><%= f.submit '新規登録' %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+    <div class="col-lg-7 mt-3 mb-3">
+      <h5 class="text-center">収入</h5>
+      <table class="text-center table tbody-bordered table-hover table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th>日付</th>
+            <th>項目</th>
+            <th>金額</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @incomes.each do |income| %>
+            <tr>
+              <td><%= income.period %></td>
+              <td></td>
+              <td><%= income.amount.to_s(:delimited, delimiter: ',') %>円</td>
+              <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary btn-sm" %></td>
+              <td><%= link_to "削除", balance_path(income), method: :delete, class:"btn btn-primary btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tbody>
+          <tr>
+            <th></th>
+            <th>収入合計</th>
+            <td><%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+</div>
