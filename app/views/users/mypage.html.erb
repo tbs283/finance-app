@@ -8,6 +8,7 @@
             <th></th>
             <th>名前</th>
             <th>メールアドレス</th>
+            <th>自己紹介</th>
             <th></th>
           </tr>
         </thead>
@@ -16,6 +17,7 @@
             <td><%= attachment_image_tag @user, :image, size: "42x28", class: "rounded-circle" %></td>
             <td><%= @user.name %></td>
             <td><%= @user.email %></td>
+            <td><%= @user.introduction %></td>
             <td><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-secondary btn-sm" %></td>
           </tr>
         </tbody>
@@ -24,32 +26,21 @@
     <div class="col-lg-3"></div>
   </div>
   
-  <% if Goal.exists? %>
-    <div class="row">
-      <div class="col-lg-3"></div>
-      <div class="col-lg-6 ">
-        <table class="mx-auto">
-          <tr>
-            <th>目標金額</th>
-            <td><%# @last_goal.goal_amount.to_s(:delimited, delimiter: ',') %>円</td>
-            <td><%# link_to "目標を編集する", edit_goal_path(@last_goal), class:"btn btn-primary btn-sm" %></td>
-          </tr>
-          <tr>
-            <th>目標期限</th>
-            <td><%# @last_goal.goal_limit %></td>
-          </tr>
-          <tbody>
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 ">
+      <table class="mx-auto">
+        <tbody>
             <tr>
-              <th>現状収支</th>
-              <td><%= @savings.to_s(:delimited, delimiter: ',') %>円</td>
-              <td><%= link_to "収支を登録する", balances_path, class:"btn btn-primary btn-sm" %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-lg-3"></div>
+            <th>現状収支</th>
+            <td><%= @savings.to_s(:delimited, delimiter: ',') %>円</td>
+            <td><%= link_to "収支を登録する", balances_path, class:"btn btn-primary btn-sm" %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  <% end %>
+    <div class="col-lg-3"></div>
+  </div>
   <!--<div class="row">-->
   <!--  <div class="col-lg-1"></div>-->
   <!--  <div class="col-lg-10">-->

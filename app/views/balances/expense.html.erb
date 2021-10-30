@@ -1,3 +1,10 @@
+    <% if @balance_new.errors.any? %>
+      <%= @balance_new.errors.count %>件のエラーが発生しました
+      <% @balance_new.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+  
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-5">
@@ -8,6 +15,7 @@
     </div>
     <div class="col-lg-1"></div>
   </div>
+  
   <div class="row">
     <div class="col-lg-1"></div>
     <div class='col-lg-3 mt-3'>
@@ -30,9 +38,8 @@
             </tr>
           </tbody>
           <tr>
-            <th><%= f.label :expense_genre_id, "項目" %></th>
-            
-            <td></td>
+            <th><%= f.label :genre, "項目" %></th>
+            <td><%= f.select :genre, [['食費', 1], ['住居費', 2], ['日用品', 3], ['水道光熱費', 4], ['衣服', 5], ['趣味・娯楽', 6], ['教養・教育', 7], ['通信費', 8], ['健康・医療', 9], ['その他', 10]], { include_blank: true} %></td>
           </tr>
           <tbody>
             <tr>
@@ -65,7 +72,7 @@
           <% @expenses.each do |expense| %>
             <tr>
               <td><%= expense.period %></td>
-              <td></td>
+              <td><%= expense.genre %></td>
               <td><%= expense.amount.to_s(:delimited, delimiter: ',') %>円</td>
               <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary btn-sm" %></td>
               <td><%= link_to "削除", balance_path(expense), method: :delete, class:"btn btn-primary btn-sm" %></td>

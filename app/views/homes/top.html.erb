@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
-            <%= pie_chart @expenses.group(:amount).count %>
+            <%= pie_chart @expenses.group(:genre).sum(:amount) %>
         </div>
         <div class="col-lg-4, mt-3 mb-3">
             <% if user_signed_in? %>
@@ -21,7 +21,7 @@
             <% end %>
         </div>
         <div class="col-lg-4">
-            <%= pie_chart @incomes.group(:amount).count %>
+            <%= pie_chart @incomes.group(:genre).sum(:amount) %>
         </div>
     </div>
     

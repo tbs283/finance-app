@@ -1,3 +1,10 @@
+    <% if @balance_new.errors.any? %>
+      <%= @balance_new.errors.count %>件のエラーが発生しました
+      <% @balance_new.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+  
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-5">
@@ -31,7 +38,7 @@
           </tbody>
           <tr>
             <th><%= f.label :genre, "項目" %></th>
-            <td><%= f.select :genre, [['給料', 10], ['その他', 9]], { include_blank: true} %></td>
+            <td><%= f.select :genre, [['給料', 11], ['その他', 10]], { include_blank: true} %></td>
           </tr>
           <tbody>
             <tr>
@@ -64,7 +71,7 @@
           <% @incomes.each do |income| %>
             <tr>
               <td><%= income.period %></td>
-              <td></td>
+              <td><%= income.genre %></td>
               <td><%= income.amount.to_s(:delimited, delimiter: ',') %>円</td>
               <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary btn-sm" %></td>
               <td><%= link_to "削除", balance_path(income), method: :delete, class:"btn btn-primary btn-sm" %></td>

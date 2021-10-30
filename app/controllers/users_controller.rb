@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   
   def mypage
     @user = current_user
-    @last_goal = Goal.where(user_id: current_user.id).last
     @incomes = current_user.balances.where(balance: 0).sum(:amount)
     @expenses = current_user.balances.where(balance: 1).sum(:amount)
     @savings = @incomes - @expenses
@@ -29,6 +28,6 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:email, :name, :goal, :goal_limit, :image)
+    params.require(:user).permit(:email, :name, :goal, :goal_limit, :image, :introduction)
   end
 end
