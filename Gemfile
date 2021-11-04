@@ -73,3 +73,5 @@ end
 
 gem "chartkick"
 gem 'chartable'
+
+gem 'groupdate'

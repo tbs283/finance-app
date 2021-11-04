@@ -1,94 +1,101 @@
-  　
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <h2 class="text-center mt-5 mb-5">現在の貯金額 <%= @saving.to_s(:delimited, delimiter: ',') %>円</h2>
+    <h2 class="text-center mt-5 mb-5">この月の収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h2>
+  </div>
+  <div class="col-lg-2"></div>
+</div>
+  
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-5">
+    <%= link_to "前の月",balances_path(month:@month.prev_month) %>
+  </div>
+  <div class="col-lg-5">
+    <%= link_to "次の月",balances_path(month:@month.next_month) %>
+  </div>
+  <div class="col-lg-1"></div>
+</div>
+  
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-5 mt-3 mb-3">
+    <h5 class="text-center"><%= link_to "支出",expense_path %></h5>
+    <table class="text-center table tbody-bordered table-hover table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th>日付</th>
+          <th>項目</th>
+          <th>金額</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @expenses.each do |expense| %>
+          <tr>
+            <td><%= expense.period %></td>
+            <td><%= expense.genre %></td>
+            <td><%= expense.amount.to_s(:delimited, delimiter: ',') %>円</td>
+            <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary btn-sm" %></td>
+            <td><%= link_to "削除", balance_path(expense), method: :delete, class:"btn btn-primary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tbody>
+        <tr>
+          <th></th>
+          <th>支出合計</th>
+          <td><%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-5 mt-3 mb-3">
+    <h5 class="text-center"><%= link_to "収入",income_path %></h5>
+    <table class="text-center table tbody-bordered table-hover table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th>日付</th>
+          <th>項目</th>
+          <th>金額</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @incomes.each do |income| %>
+          <tr>
+            <td><%= income.period %></td>
+            <td><%= income.genre %></td>
+            <td><%= income.amount.to_s(:delimited, delimiter: ',') %>円</td>
+            <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary btn-sm" %></td>
+            <td><%= link_to "削除", balance_path(income), method: :delete, class:"btn btn-primary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tbody>
+        <tr>
+          <th></th>
+          <th>収入合計</th>
+          <td><%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-1"></div>
+</div>
 
-  
-  <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
-      <h2 class="text-center mt-5 mb-5">現在の貯金額 <%= @saving.to_s(:delimited, delimiter: ',') %>円</h2>
-      <h2 class="text-center mt-5 mb-5">この月の収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h2>
-    </div>
-    <div class="col-lg-2"></div>
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-5">
+    <%= line_chart @expenses_all.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "支出", width: "600px", height: "200px" %>
   </div>
-  
-  <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-5">
-      <%= link_to "前の月",balances_path(month:@month.prev_month) %>
-    </div>
-    <div class="col-lg-5">
-      <%= link_to "次の月",balances_path(month:@month.next_month) %>
-    </div>
-    <div class="col-lg-1"></div>
+  <div class="col-lg-5">
+    <%= line_chart @incomes_all.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収入", width: "600px", height: "200px" %>
   </div>
-  
-  <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-5 mt-3 mb-3">
-      <h5 class="text-center"><%= link_to "支出",expense_path %></h5>
-      <table class="text-center table tbody-bordered table-hover table-sm">
-        <thead class="thead-dark">
-          <tr>
-            <th>日付</th>
-            <th>項目</th>
-            <th>金額</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @expenses.each do |expense| %>
-            <tr>
-              <td><%= expense.period %></td>
-              <td><%= expense.genre %></td>
-              <td><%= expense.amount.to_s(:delimited, delimiter: ',') %>円</td>
-              <td><%= link_to "詳細", balance_path(expense), class:"btn btn-primary btn-sm" %></td>
-              <td><%= link_to "削除", balance_path(expense), method: :delete, class:"btn btn-primary btn-sm" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>収入合計</th>
-            <td><%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-lg-5 mt-3 mb-3">
-      <h5 class="text-center"><%= link_to "収入",income_path %></h5>
-      <table class="text-center table tbody-bordered table-hover table-sm">
-        <thead class="thead-dark">
-          <tr>
-            <th>日付</th>
-            <th>項目</th>
-            <th>金額</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @incomes.each do |income| %>
-            <tr>
-              <td><%= income.period %></td>
-              <td><%= income.genre %></td>
-              <td><%= income.amount.to_s(:delimited, delimiter: ',') %>円</td>
-              <td><%= link_to "詳細", balance_path(income), class:"btn btn-primary btn-sm" %></td>
-              <td><%= link_to "削除", balance_path(income), method: :delete, class:"btn btn-primary btn-sm" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>支出合計</th>
-            <td><%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-lg-1"></div>
-  </div>
+  <div class="col-lg-1"></div>
 </div>

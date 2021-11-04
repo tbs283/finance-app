@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-4"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
-        <div class="col-lg-4, mt-3 mb-3">
-            <% if user_signed_in? %>
+        <% if user_signed_in? %>
+            <div class="col-lg-4"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
+            <div class="col-lg-4, mt-3 mb-3">
                 <table>
                     <thead><%= @month %></thead>
                     <tbody>
@@ -13,12 +13,17 @@
                         </tr>
                     </tbody>
                 </table>
-            <% else %>
+            </div>
+            <div class="col-lg-4"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
+        <% else %>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4, mt-3 mb-3">
                 <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
                 <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
-            <% end %>
-        </div>
-        <div class="col-lg-4"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
+            </div>
+            <div class="col-lg-4"></div>
+        <% end %>
     </div>
     
     <div class="row">
