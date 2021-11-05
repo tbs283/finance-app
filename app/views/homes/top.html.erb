@@ -1,24 +1,18 @@
 <div class="container">
+    <div class="row"></div>
     <div class="row">
         <% if user_signed_in? %>
-            <div class="col-lg-4"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
-            <div class="col-lg-4, mt-3 mb-3">
-                <table>
-                    <thead><%= @month %></thead>
-                    <tbody>
-                        <tr class="text-center"><td class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</td></tr>
-                        <tr>
-                            <td class="text-center">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
-                            <td class="text-center">収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-lg-4 mt-3"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
+            <div class="col-lg-4 pt-5 mt-3">
+                <h1 class="text-center"><%= @month %></h1>
+                <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
+                <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
             </div>
-            <div class="col-lg-4"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
+            <div class="col-lg-4 mt-3"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
         <% else %>
             <div class="col-lg-4"></div>
             <div class="col-lg-4"></div>
-            <div class="col-lg-4, mt-3 mb-3">
+            <div class="col-lg-4">
                 <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
                 <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
             </div>
@@ -26,7 +20,7 @@
         <% end %>
     </div>
     
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <h5>新着ブログ</h5>
@@ -94,7 +88,7 @@
             </table>
         </div>
         <div class="col-lg-2">
-            <p><%= link_to "もっと見る", blogs_path %></p>
+            <p><%= link_to "もっと見る", search_blogs_path %></p>
         </div>
     </div>
 </div>

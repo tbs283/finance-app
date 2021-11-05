@@ -41,6 +41,15 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
   
+  def search
+    @blogs = Blog.all.order(created_at: :desc).page(params[:page]).per(25)
+    if params[:title].present?
+      @blogs_search = Blog.where('title LIKE ?', "%#{params[:title]}%")
+    else
+      @blogs_search = Blog.none
+    end
+  end
+  
   private
   def blog_params
     params.require(:blog).permit(:title, :content, :user_id)

@@ -92,3 +92,50 @@
     <div class="col-lg-1"></div>
   </div>
 </div>
+
+<div class="row">
+  <% if @balances.exists?(genre: 1) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 1).sum(:amount), xtitle: "年月", ytitle: "食費", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 2) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 2).sum(:amount), xtitle: "年月", ytitle: "住居費", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 3) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 3).sum(:amount), xtitle: "年月", ytitle: "日用品", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 4) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 4).sum(:amount), xtitle: "年月", ytitle: "水道光熱費", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 5) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 5).sum(:amount), xtitle: "年月", ytitle: "衣服", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 6) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 6).sum(:amount), xtitle: "年月", ytitle: "趣味・娯楽", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 7) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 7).sum(:amount), xtitle: "年月", ytitle: "教養・教育", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 8) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 8).sum(:amount), xtitle: "年月", ytitle: "通信費", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+  
+  <% if @balances.exists?(genre: 9) %>
+    <%= line_chart @expenses_all.group_by_month(:period).where(genre: 9).sum(:amount), xtitle: "年月", ytitle: "健康・医療", width: "600px", height: "200px" %>
+  <% else %>
+  <% end %>
+</div>

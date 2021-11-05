@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
   <body>
     <header>
@@ -21,10 +22,10 @@
                   <li class="fas nav-link text-light"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %></li>
                   <li class="fas nav-link text-light"><%= link_to "マイページ", mypage_path, class: "btn btn-secondary" %></li>
                   <li class="fas nav-link text-light"><%= link_to "新規投稿", new_blog_path, class: "btn btn-secondary" %></li>
-                  <li class="fas nav-link text-light"><%= link_to "ブログ", blogs_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "ブログ", search_blogs_path, class: "btn btn-secondary" %></li>
                   <li class="fas nav-link text-light"><%= link_to "収支一覧", balances_path, class: "btn btn-secondary" %></li>
                 <% else %>
-                  <li class="fas nav-link text-light"><%= link_to "ブログ", blogs_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "ブログ", search_blogs_path, class: "btn btn-secondary" %></li>
                   <li class="fas nav-link text-light"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary" %></li>
                   <li class="fas nav-link text-light"><%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %></li>
                 <% end %>

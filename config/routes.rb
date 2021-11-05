@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "income" => 'balances#income'
   get "expense" => 'balances#expense'
   resources :blogs, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
+    get :search, on: :collection
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
