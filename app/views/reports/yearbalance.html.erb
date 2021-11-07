@@ -1,0 +1,2 @@
+年間収支推移
+<%= line_chart @balances.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収支", width: "600px", height: "200px" %>

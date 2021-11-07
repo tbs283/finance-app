@@ -5,10 +5,13 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   
+  get "yearbalance" => 'reports#yearbalance'
+  get "yeargenre" => 'reports#yeargenre'
+  get "totalsaving" => 'reports#totalsa'
   get "mypage" => 'users#mypage'
   get "income" => 'balances#income'
   get "expense" => 'balances#expense'
-  resources :blogs, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
+  resources :blogs, only: [:new, :create, :edit, :update, :show, :destroy] do
     get :search, on: :collection
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

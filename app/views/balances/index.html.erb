@@ -19,8 +19,7 @@
 </div>
   
 <div class="row">
-  <div class="col-lg-1"></div>
-  <div class="col-lg-5 mt-3 mb-3">
+  <div class="col-lg-6 mt-3 mb-3">
     <h5 class="text-center"><%= link_to "支出",expense_path %></h5>
     <table class="text-center table tbody-bordered table-hover table-sm">
       <thead class="thead-dark">
@@ -53,7 +52,7 @@
       </tbody>
     </table>
   </div>
-  <div class="col-lg-5 mt-3 mb-3">
+  <div class="col-lg-6 mt-3 mb-3">
     <h5 class="text-center"><%= link_to "収入",income_path %></h5>
     <table class="text-center table tbody-bordered table-hover table-sm">
       <thead class="thead-dark">
@@ -86,22 +85,4 @@
       </tbody>
     </table>
   </div>
-  <div class="col-lg-1"></div>
-</div>
-
-<div class="row">
-  <div class="col-lg-1"></div>
-  <div class="col-lg-10"><%= line_chart @balances.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収支", width: "600px", height: "200px" %></div>
-  <div class="col-lg-1"></div>
-</div>
-
-<div class="row">
-  <div class="col-lg-1"></div>
-  <div class="col-lg-5">
-    <%= line_chart @expenses_all.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "支出", width: "600px", height: "200px" %>
-  </div>
-  <div class="col-lg-5">
-    <%= line_chart @incomes_all.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収入", width: "600px", height: "200px" %>
-  </div>
-  <div class="col-lg-1"></div>
 </div>

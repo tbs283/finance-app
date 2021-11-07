@@ -1,15 +1,30 @@
 <div class="container">
   <div class="row">
-    <h3>ブログ</h3>
-    <%= form_with url: search_blogs_path, method: :get, local: true do |f| %>
-      <%= f.text_field :title %>
-      <%= f.submit :search %>
-    <% end %>
-  </div>
-  
-  <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
+    <div class="col-lg-3">
+      <h5>メニュー</h5>
+      <h6>収支</h6>
+      <li><%= link_to "収支一覧", balances_path %></li>
+      <li><%= link_to "支出",expense_path %></li>
+      <li><%= link_to "収入",income_path %></li>
+      <h6>ブログ</h6>
+      <li><%= link_to "ブログ一覧", search_blogs_path %></li>
+      <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
+      <h6>データ</h6>
+      <li><%= link_to "年間収支", yearbalance_path %></li>
+      <li><%= link_to "年間項目割合", yeargenre_path %></li>
+      <li><%= link_to "貯蓄推移", totalsaving_path %></li>
+      <h6>設定</h6>
+      <li><%= link_to "マイページ", mypage_path %></li>
+            <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+    </div>
+    <div class="col-lg-9">
+      <h3>ブログ</h3>
+      <div>
+        <%= form_with url: search_blogs_path, method: :get, local: true do |f| %>
+          <%= f.text_field :title %>
+          <%= f.submit :search %>
+        <% end %>
+      </div>
       <table class="table table-sm table-dark text-center table-striped table-hover mt-3 mb-3">
         <thead>
           <tr>
@@ -36,7 +51,40 @@
           </tbody>
         <% end %>
       </table>
+      <table class="table table-sm table-dark text-center table-striped table-hover mt-3 mb-3">
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>投稿者</th>
+            <th>コメント数</th>
+            <th>作成日</th>
+          </tr>
+        </thead>
+        <% @blogs.each do |blog| %>
+          <tbody>
+            <tr>
+              <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %></td>
+              <td><%= link_to "#{blog.title}", blog_path(blog.id) %></td>
+              <td>
+                <%= link_to user_path(blog.user_id) do %>
+                  <%= blog.user.name %>
+                <% end %>
+              </td>
+              <td><%= blog.comments.count %>コメント</td>
+              <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
       <%= paginate @blogs %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      
     </div>
     <div class="col-lg-2"></div>
   </div>

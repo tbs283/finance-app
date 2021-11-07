@@ -1,8 +1,4 @@
 class BlogsController < ApplicationController
-  def index
-    @blogs = Blog.all.order(created_at: :desc).page(params[:page]).per(25)
-  end
-  
   def show
     @blog = Blog.find(params[:id])
     @comment = Comment.new
@@ -42,7 +38,7 @@ class BlogsController < ApplicationController
   end
   
   def search
-    @blogs = Blog.all.order(created_at: :desc).page(params[:page]).per(25)
+    @blogs = Blog.all.order(created_at: :desc).page(params[:page]).per(15)
     if params[:title].present?
       @blogs_search = Blog.where('title LIKE ?', "%#{params[:title]}%")
     else

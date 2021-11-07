@@ -1,7 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-6">
+    <div class="col-lg-3">
+      <h5>メニュー</h5>
+      <h6>収支</h6>
+      <li><%= link_to "収支一覧", balances_path %></li>
+      <li><%= link_to "支出",expense_path %></li>
+      <li><%= link_to "収入",income_path %></li>
+      <h6>ブログ</h6>
+      <li><%= link_to "ブログ一覧", search_blogs_path %></li>
+      <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
+      <h6>データ</h6>
+      <li><%= link_to "年間収支", yearbalance_path %></li>
+      <li><%= link_to "年間項目割合", yeargenre_path %></li>
+      <li><%= link_to "貯蓄推移", totalsaving_path %></li>
+      <h6>設定</h6>
+      <li><%= link_to "マイページ", mypage_path %></li>
+      <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+    </div>
+    
+    <div class="col-lg-9">
       <table class="text-center table table-bordered mt-3 mb-3">
         <thead class="thead-dark">
           <tr>
@@ -23,73 +40,4 @@
         </tbody>
       </table>
     </div>
-    <div class="col-lg-3"></div>
   </div>
-  
-  <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-6 ">
-      <table class="mx-auto">
-        <tbody>
-            <tr>
-            <th>現状収支</th>
-            <td><%= @savings.to_s(:delimited, delimiter: ',') %>円</td>
-            <td><%= link_to "収支を登録する", balances_path, class:"btn btn-primary btn-sm" %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-lg-3"></div>
-  </div>
-  <!--<div class="row">-->
-  <!--  <div class="col-lg-1"></div>-->
-  <!--  <div class="col-lg-10">-->
-  <!--    <h3>グラフ</h3>-->
-  <!--    <canvas id="myChart"></canvas>-->
-  <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>-->
-  <!--    <script>-->
-  <!--      var ctx = document.getElementById("myChart");-->
-  <!--      console.log(ctx);-->
-  <!--      var myLineChart = new Chart(ctx, {-->
-  <!--        type: 'line',-->
-  <!--        data: {-->
-  <!--          labels: ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],-->
-  <!--          datasets: [-->
-  <!--            {-->
-  <!--              label: '支出',-->
-  <!--              data: [35, 34, 37, 35, 34, 35, 34, 25],-->
-  <!--              borderColor: "raba(255,0,0,1)",-->
-  <!--              backgroundColor: "rgba(0,0,0,0)"-->
-  <!--            },-->
-  <!--            {-->
-  <!--              label: '収入',-->
-  <!--              data: [25, 27, 27, 25, 26, 27, 25, 21],-->
-  <!--              borderColor: "raba(0,0,255,1)",-->
-  <!--              backgroundColor: "rgba(0,0,0,0)"-->
-  <!--            }-->
-  <!--          ],-->
-  <!--        },-->
-  <!--        options: {-->
-  <!--          title: {-->
-  <!--            display: true,-->
-  <!--            text: '気温（8月1日~8月7日）'-->
-  <!--          },-->
-  <!--          scales: {-->
-  <!--            yAxes: [{-->
-  <!--              ticks: {-->
-  <!--                suggestedMax: 1000000,-->
-  <!--                suggestedMin: 0,-->
-  <!--                stepSize: 10000,-->
-  <!--                callback: function(value, index, values){-->
-  <!--                return  value +  '度'-->
-  <!--              }-->
-  <!--            }-->
-  <!--          }]-->
-  <!--        }-->
-  <!--      }-->
-  <!--      });-->
-  <!--    </script>-->
-  <!--  </div>-->
-  <!--  <div class="col-lg-1"></div>-->
-  <!--</div>-->
-</div>
