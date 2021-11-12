@@ -1,25 +1,31 @@
-<div class="container">
-    <div class="row"></div>
-    <div class="row">
-        <% if user_signed_in? %>
-            <div class="col-lg-4 mt-3"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
-            <div class="col-lg-4 pt-5 mt-3">
-                <h1 class="text-center"><%= @month %></h1>
-                <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
-                <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
+<div class="a">
+    <div class="b">
+        <div class="container">
+            <div class="row">
+                <% if user_signed_in? %>
+                    <div class="col-lg-4 mt-3"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
+                    <div class="col-lg-4 pt-5 mt-3">
+                        <h1 class="text-center"><%= @month %></h1>
+                        <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
+                        <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
+                    </div>
+                    <div class="col-lg-4 mt-3"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
+                <% else %>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
+                        <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
+                    </div>
+                    <div class="col-lg-4"></div>
+                <% end %>
             </div>
-            <div class="col-lg-4 mt-3"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
-        <% else %>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-                <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
-                <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
-            </div>
-            <div class="col-lg-4"></div>
-        <% end %>
+        </div>
     </div>
-    
+    <div class="b">2</div>
+    <div class="b">3</div>
+</div>
+
+<div class="container">
     <div class="row mt-5">
         <div class="col-lg-3">
             <h5>メニュー</h5>
@@ -35,8 +41,12 @@
             <li><%= link_to "年間項目割合", yeargenre_path %></li>
             <li><%= link_to "貯蓄推移", totalsaving_path %></li>
             <h6>設定</h6>
+            <li><%= link_to "予算", new_budget_path %></li>
             <li><%= link_to "マイページ", mypage_path %></li>
-            <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+            <% if user_signed_in? %>
+                <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+            <% else %>
+            <% end %>
         </div>
         <div class="col-lg-7">
             <h5>新着ブログ</h5>
@@ -59,7 +69,7 @@
                                     <%= blog.title %>
                                 <% end %>
                             </td>
-                            <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %></td>
+                            <td><%= attachment_image_tag blog.user, :image, size: "35x28", format: 'png', fallback: "no_image.jpg" %></td>
                             <td><%= link_to "#{blog.user.name}", user_path(blog.user_id) %></td>
                             <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
                             <td><%= blog.content.truncate(10) %></td>

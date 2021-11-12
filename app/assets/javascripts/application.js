@@ -18,14 +18,13 @@
 //= require jquery
 
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 //= require Chart.bundle
 //= require chartkick
 
-$(document).ready(function () {
-  $('.jquery').on('click', function(){
-    $(this).css('color','red');
-  });
+$(function() {
+    $('.a').slick({
+        dots: true,
+    });
 });

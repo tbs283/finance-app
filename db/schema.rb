@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_29_150616) do
+ActiveRecord::Schema.define(version: 2021_11_08_145251) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "user_id"
@@ -32,17 +32,26 @@ ActiveRecord::Schema.define(version: 2021_10_29_150616) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "comment"
+  create_table "budgets", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "blog_id"
+    t.integer "food"
+    t.integer "house"
+    t.integer "daily"
+    t.integer "utility"
+    t.integer "cloth"
+    t.integer "hobby"
+    t.integer "liberal_art"
+    t.integer "communicate"
+    t.integer "medical"
+    t.integer "other"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "expense_genres", force: :cascade do |t|
-    t.integer "expense_id"
-    t.integer "name"
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,21 +65,6 @@ ActiveRecord::Schema.define(version: 2021_10_29_150616) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "goals", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "goal_amount"
-    t.date "goal_limit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "income_genres", force: :cascade do |t|
-    t.integer "income_id"
-    t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

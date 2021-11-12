@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -7,10 +6,11 @@ Rails.application.routes.draw do
   
   get "yearbalance" => 'reports#yearbalance'
   get "yeargenre" => 'reports#yeargenre'
-  get "totalsaving" => 'reports#totalsa'
+  get "totalsaving" => 'reports#totalsaving'
   get "mypage" => 'users#mypage'
   get "income" => 'balances#income'
   get "expense" => 'balances#expense'
+  resources :budgets, only: [:new, :create, :edit, :update]
   resources :blogs, only: [:new, :create, :edit, :update, :show, :destroy] do
     get :search, on: :collection
     resource :favorites, only: [:create, :destroy]

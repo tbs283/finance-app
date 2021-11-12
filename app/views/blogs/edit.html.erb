@@ -1,11 +1,38 @@
-<%= form_with model:@blog, url:blog_path, local:true do |f| %>
-    <div class="field">
-        <%= f.label :title %><br/>
-        <%= f.text_field :title %>    <%= f.submit '保存' %>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-3">
+            <h5>メニュー</h5>
+            <h6>収支</h6>
+            <li><%= link_to "収支一覧", balances_path %></li>
+            <li><%= link_to "支出",expense_path %></li>
+            <li><%= link_to "収入",income_path %></li>
+            <h6>ブログ</h6>
+            <li><%= link_to "ブログ一覧", search_blogs_path %></li>
+            <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
+            <h6>データ</h6>
+            <li><%= link_to "年間収支", yearbalance_path %></li>
+            <li><%= link_to "年間項目割合", yeargenre_path %></li>
+            <li><%= link_to "貯蓄推移", totalsaving_path %></li>
+            <h6>設定</h6>
+            <li><%= link_to "予算", new_budget_path %></li>
+            <li><%= link_to "マイページ", mypage_path %></li>
+            <% if user_signed_in? %>
+                <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+            <% else %>
+            <% end %>
+        </div>
+        <div class="col-lg-9">
+            <%= form_with model:@blog, url:blog_path, local:true do |f| %>
+                <div class="field">
+                    <%= f.label :title %><br/>
+                    <%= f.text_field :title %>    <%= f.submit '保存' %>
+                </div>
+                <div class="field">
+                    <%= f.label :content %><br/>
+                    <%= f.text_area :content, size: "80x20" %>
+                </div>
+            <% end %>
+        </div>
     </div>
-    
-    <div class="field">
-        <%= f.label :content %><br/>
-        <%= f.text_area :content, size: "150x100" %>    
-    </div>
-<% end %>
+</div>
+

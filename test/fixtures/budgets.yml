@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  food: 1
+  house: 1
+  daily: 1
+  utility: 1
+  cloth: 1
+  hobby: 1
+  liberal_art: 1
+  communicate: 1
+  medical: 1
+  other: 1
+
+two:
+  user_id: 1
+  food: 1
+  house: 1
+  daily: 1
+  utility: 1
+  cloth: 1
+  hobby: 1
+  liberal_art: 1
+  communicate: 1
+  medical: 1
+  other: 1
