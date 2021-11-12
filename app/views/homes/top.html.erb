@@ -26,7 +26,7 @@
 </div>
 
 <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-5">
         <div class="col-lg-3">
             <h5>メニュー</h5>
             <h6>収支</h6>
@@ -48,31 +48,34 @@
             <% else %>
             <% end %>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-9">
             <h5>新着ブログ</h5>
             <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>タイトル</th>
-                        <th></th>
-                        <th>投稿者</th>
-                        <th>作成日</th>
+                        <th style="width: 20%">タイトル</th>
+                        <th style="width: 5%"></th>
+                        <th style="width: 15%">投稿者</th>
+                        <th style="width: 15%">作成日</th>
+                        <th style="width: 45%">本文</th>
                     </tr>
                 </thead>
                 <% @new_blog.first(8).each do |blog| %>
                     <tbody>
                         <tr>
-                            <td></td>
                             <td>
                                 <%= link_to blog_path(blog.id) do %>
-                                    <%= blog.title %>
+                                    <%= blog.title.truncate(10) %>
                                 <% end %>
                             </td>
                             <td><%= attachment_image_tag blog.user, :image, size: "35x28", format: 'png', fallback: "no_image.jpg" %></td>
-                            <td><%= link_to "#{blog.user.name}", user_path(blog.user_id) %></td>
+                            <td>
+                                <%= link_to user_path(blog.user_id) do %>
+                                    <%= blog.user.name.truncate(7) %>
+                                <% end %>
+                            </td>
                             <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-                            <td><%= blog.content.truncate(10) %></td>
+                            <td><%= blog.content.truncate(20) %></td>
                         </tr>
                     </tbody>
                 <% end %>
@@ -81,31 +84,30 @@
             <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>タイトル</th>
-                        <th></th>
-                        <th>投稿者</th>
-                        <th>作成日</th>
+                        <th style="width: 20%">タイトル</th>
+                        <th style="width: 5%"></th>
+                        <th style="width: 15%">投稿者</th>
+                        <th style="width: 15%">作成日</th>
+                        <th style="width: 45%">本文</th>
                     </tr>
                 </thead>
                 <% @blog_ranks.first(8).each do |blog| %>
                     <tbody>
                         <tr>
-                            <td></td>
                             <td>
                                 <%= link_to blog_path(blog.id) do %>
-                                    <%= blog.title %>
+                                    <%= blog.title.truncate(10) %>
                                 <% end %>
                             </td>
                             <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %></td>
-                            <td><%= link_to "#{blog.user.name}", user_path(blog.user_id) %></td>
+                            <td><%= link_to "#{blog.user.name}", user_path(blog.user_id).truncate(7) %></td>
                             <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-                            <td><%= blog.content.truncate(10) %></td>
+                            <td><%= blog.content.truncate(20) %></td>
                         </tr>
                     </tbody>
                 <% end %>
             </table>
+            <p class="text-lg-right"><%= link_to "もっと見る", search_blogs_path %></p>
         </div>
-        <div class="col-lg-2"><p><%= link_to "もっと見る", search_blogs_path %></p></div>
     </div>
 </div>
