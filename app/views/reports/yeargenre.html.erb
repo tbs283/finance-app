@@ -24,9 +24,8 @@
     <div class="col-lg-9">
       <h3>年間項目割合</h3>
       <h4><%= @year %>年</h4>　<%# 指定する年を表示　%>
-      <%= link_to "前の年",yeargenre_path(year:@year.prev_year) %><%= link_to "次の年",yeargenre_path(year:@year.next_year) %>
-      <%= pie_chart @expenses.group(:genre).sum(:amount) %>
-      <%= pie_chart @incomes.group(:genre).sum(:amount) %>
+      <p><%= link_to "前の年",yeargenre_path(year:@year.prev_year) %><%= link_to "次の年",yeargenre_path(year:@year.next_year) %></p>
+      <%= pie_chart @expenses.group(:genre).sum(:amount), width: "200px", height: "200px" %><%= pie_chart @incomes.group(:genre).sum(:amount), width: "200px", height: "200px" %> <%# 横並びにする %>
       <p>１月</p>
       <p>２月</p>
       <p>３月</p>
