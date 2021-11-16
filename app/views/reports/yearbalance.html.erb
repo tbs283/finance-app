@@ -23,8 +23,21 @@
     </div>
     <div class="col-lg-9">
       <h3>年間収支推移</h3>
-      <h4>〜年</h4>　<%# 指定する年を表示　%>
+      <h4><%= @year %>年</h4>　<%# 指定する年を表示　%>
+      <%= link_to "前の年",yeargenre_path(year:@year.prev_year) %><%= link_to "次の年",yeargenre_path(year:@year.next_year) %>
       <%= line_chart @balances.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収支", width: "600px", height: "200px" %>
+      <p>１月</p>
+      <p>２月</p>
+      <p>３月</p>
+      <p>４月</p>
+      <p>５月</p>
+      <p>６月</p>
+      <p>７月</p>
+      <p>８月</p>
+      <p>９月</p>
+      <p>10月</p>
+      <p>11月</p>
+      <p>12月</p>
     </div>
   </div>
 </div>

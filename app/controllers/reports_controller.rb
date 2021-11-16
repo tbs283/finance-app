@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   def yearbalance
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
+    @year = params[:year] ? Date.parse(params[:year]) : Time.zone.today
     @balances = current_user.balances
     @incomes = @balances.where(balance: 0, period: @month.all_month)#その月の収入
     @expenses = @balances.where(balance: 1, period: @month.all_month)#その月の支出
