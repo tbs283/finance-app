@@ -23,6 +23,7 @@
     </div>
     <div class="col-lg-9">
       <h3>年間収支推移</h3>
+      <h4>〜年</h4>　<%# 指定する年を表示　%>
       <%= line_chart @balances.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収支", width: "600px", height: "200px" %>
     </div>
   </div>
