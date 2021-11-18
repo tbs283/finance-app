@@ -13,11 +13,14 @@
       <li><%= link_to "年間収支", yearbalance_path %></li>
       <li><%= link_to "年間項目割合", yeargenre_path %></li>
       <li><%= link_to "貯蓄推移", totalsaving_path %></li>
+      <li><%= link_to "キャッシュフロー表", cashflow_path %></li>
       <h6>設定</h6>
+      <li>固定費</li>
+      <li><%= link_to "予算", new_budget_path %></li>
       <li><%= link_to "マイページ", mypage_path %></li>
       <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
     </div>
-    
+
     <div class="col-lg-9">
       <h3>ユーザー情報</h3>
       <table class="text-center table table-bordered mt-3 mb-3">
@@ -93,6 +96,6 @@
           </tbody>
         <% end %>
       </table>
-      <h3>固定費</h3>
+      <h3>固定</h3>
     </div>
   </div>
