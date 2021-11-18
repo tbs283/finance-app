@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "yearbalance" => 'reports#yearbalance'
   get "yeargenre" => 'reports#yeargenre'
   get "totalsaving" => 'reports#totalsaving'
+  get "cashflow" => 'reports#cashflow'
   get "mypage" => 'users#mypage'
   get "income" => 'balances#income'
   get "expense" => 'balances#expense'

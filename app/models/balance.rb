@@ -13,7 +13,12 @@ class Balance < ApplicationRecord
     通信費: 8,
     健康・医療: 9,
     その他: 10,
-    給料: 11
+    給料: 11,
+    お小遣い: 12,
+    賞与: 13,
+    副業: 14,
+    投資: 15,
+    臨時収入: 16
   }
   validates :amount,
     presence: true,

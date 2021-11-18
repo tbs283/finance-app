@@ -21,8 +21,41 @@
             </div>
         </div>
     </div>
-    <div class="b">2</div>
-    <div class="b">3</div>
+    <div class="b">
+        <div class="container">
+            <div class="row">
+                <% if user_signed_in? %>
+                    <div class="col-lg-6 mt-3"></div>
+                    <div class="col-lg-6 pt-5 mt-3">
+                        <% @budget.each do |budget| %>
+                            <li>食費　<%= budget.food - @food %></li>
+                            <li>住居費　<%= budget.house - @house %></li>
+                            <li>日用品　<%= budget.daily - @daily %></li>
+                            <li>水道光熱費　<%= budget.utility - @utility %></li>
+                            <li>衣類　<%= budget.cloth - @cloth %></li>
+                            <li>趣味・娯楽　<%= budget.hobby - @hobby %></li>
+                            <li>教育・教養　<%= budget.liberal_art - @liberal_art %></li>
+                            <li>通信費　<%= budget.communicate - @communicate %></li>
+                            <li>健康・医療　<%= budget.medical - @medical %></li>
+                            <li>その他　<%= budget.other - @other %></li>
+                        <% end %>
+                    </div>
+                <% else %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="b">
+        <div class="container">
+            <div class="row">
+                <% if user_signed_in? %>
+                    <div class="col-lg-6 mt-3"></div>
+                    <div class="col-lg-6 pt-5 mt-3"></div>
+                <% else %>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -40,7 +73,9 @@
             <li><%= link_to "年間収支", yearbalance_path %></li>
             <li><%= link_to "年間項目割合", yeargenre_path %></li>
             <li><%= link_to "貯蓄推移", totalsaving_path %></li>
+            <li><%= link_to "キャッシュフロー表", cashflow_path %></li>
             <h6>設定</h6>
+            <li>固定費</li>
             <li><%= link_to "予算", new_budget_path %></li>
             <li><%= link_to "マイページ", mypage_path %></li>
             <% if user_signed_in? %>

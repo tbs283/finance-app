@@ -38,7 +38,7 @@
             <%= f.label :amount, "金額" %><%= f.number_field :amount %>円
           </div>
           <div class="col-5">
-            <%= f.label :genre, "項目" %><%= f.select :genre, [['給料', 11], ['その他', 10]], { include_blank: true} %>
+            <%= f.label :genre, "項目" %><%= f.select :genre, [['給料', 11], ['お小遣い', 12], ['賞与', 13] ,['副業', 14] ,['投資', 15] ,['臨時収入', 16] ,['その他', 10]], { include_blank: true} %>
             <%= f.label :description, "説明" %><%= f.text_field :description %>
           </div>
           <div class="col-2">
