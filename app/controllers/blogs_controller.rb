@@ -12,9 +12,9 @@ class BlogsController < ApplicationController
     @blog_new = Blog.new(blog_params)
     @blog_new.user_id = current_user.id
     if @blog_new.save
-      redirect_to blog_path(@blog_new)
+      redirect_to blog_path(@blog_new),notice:'投稿完了しました:)'
     else
-      render :new
+      render :new,notice:'投稿に失敗しました:)'
     end
   end
 

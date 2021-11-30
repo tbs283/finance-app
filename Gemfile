@@ -75,3 +75,12 @@ gem "chartkick"
 gem 'chartable'
 
 gem 'groupdate'
+
+# 自動デプロイツール　参照"https://qiita.com/tkykmw/items/a34441aae142e0e41b65"
+group :development do
+  gem 'capistrano'
+end
+
+group :fixedcost do
+  gem 'whenever', require: false
+end
