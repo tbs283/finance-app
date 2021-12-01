@@ -1,62 +1,66 @@
-<div class="a">
-    <div class="b">
-        <div class="container">
-            <div class="row">
-                <% if user_signed_in? %>
-                    <div class="col-lg-4 mt-3"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
-                    <div class="col-lg-4 pt-5 mt-3">
-                        <h1 class="text-center"><%= @month %></h1>
-                        <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
-                        <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
+<% if user_signed_in? %>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active bg-primary">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
+                        <div class="col-6"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
+                        <div class="col-12">
+                            <h1 class="text-center"><%= @month %></h1>
+                            <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
+                            <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
+                        </div>
                     </div>
-                    <div class="col-lg-4 mt-3"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
-                <% else %>
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
-                        <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
-                    </div>
-                    <div class="col-lg-4"></div>
-                <% end %>
+                </div>
+            </div>
+            <div class="carousel-item bg-primary">
+                <div class="col-lg-6 mt-3"></div>
+                <div class="col-lg-6 pt-5 mt-3">
+                    <% @budget.each do |budget| %>
+                        <li>食費　<%= budget.food - @food %></li>
+                        <li>住居費　<%= budget.house - @house %></li>
+                        <li>日用品　<%= budget.daily - @daily %></li>
+                        <li>水道光熱費　<%= budget.utility - @utility %></li>
+                        <li>衣類　<%= budget.cloth - @cloth %></li>
+                        <li>趣味・娯楽　<%= budget.hobby - @hobby %></li>
+                        <li>教育・教養　<%= budget.liberal_art - @liberal_art %></li>
+                        <li>通信費　<%= budget.communicate - @communicate %></li>
+                        <li>健康・医療　<%= budget.medical - @medical %></li>
+                        <li>その他　<%= budget.other - @other %></li>
+                    <% end %>
+                </div>
+            </div>
+            <div class="carousel-item bg-primary">
+            
             </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <div class="b">
-        <div class="container">
-            <div class="row">
-                <% if user_signed_in? %>
-                    <div class="col-lg-6 mt-3"></div>
-                    <div class="col-lg-6 pt-5 mt-3">
-                        <% @budget.each do |budget| %>
-                            <li>食費　<%= budget.food - @food %></li>
-                            <li>住居費　<%= budget.house - @house %></li>
-                            <li>日用品　<%= budget.daily - @daily %></li>
-                            <li>水道光熱費　<%= budget.utility - @utility %></li>
-                            <li>衣類　<%= budget.cloth - @cloth %></li>
-                            <li>趣味・娯楽　<%= budget.hobby - @hobby %></li>
-                            <li>教育・教養　<%= budget.liberal_art - @liberal_art %></li>
-                            <li>通信費　<%= budget.communicate - @communicate %></li>
-                            <li>健康・医療　<%= budget.medical - @medical %></li>
-                            <li>その他　<%= budget.other - @other %></li>
-                        <% end %>
-                    </div>
-                <% else %>
-                <% end %>
+<% else %>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
+                <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
             </div>
+            <div class="col-lg-4"></div>
         </div>
     </div>
-    <div class="b">
-        <div class="container">
-            <div class="row">
-                <% if user_signed_in? %>
-                    <div class="col-lg-6 mt-3"></div>
-                    <div class="col-lg-6 pt-5 mt-3"></div>
-                <% else %>
-                <% end %>
-            </div>
-        </div>
-    </div>
-</div>
+<% end %>
 
 <div class="container">
     <div class="row mt-5 mb-5">
@@ -69,6 +73,8 @@
             <h6>ブログ</h6>
             <li><%= link_to "ブログ一覧", search_blogs_path %></li>
             <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
+            <h6>診断</h6>
+            <li>FP診断</li>
             <h6>データ</h6>
             <li><%= link_to "年間収支", yearbalance_path %></li>
             <li><%= link_to "年間項目割合", yeargenre_path %></li>
