@@ -1,114 +1,94 @@
 <% if user_signed_in? %>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active w-100">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
-                        <div class="col-6"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
-                        <div class="col-12">
-                            <h1 class="text-center"><%= @month %></h1>
-                            <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
-                            <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item w-100">
-                <div class="col-lg-6 mt-3"></div>
-                <div class="col-lg-6 pt-5 mt-3">
-                    <% @budget.each do |budget| %>
-                        <li>食費　<%= budget.food - @food %></li>
-                        <li>住居費　<%= budget.house - @house %></li>
-                        <li>日用品　<%= budget.daily - @daily %></li>
-                        <li>水道光熱費　<%= budget.utility - @utility %></li>
-                        <li>衣類　<%= budget.cloth - @cloth %></li>
-                        <li>趣味・娯楽　<%= budget.hobby - @hobby %></li>
-                        <li>教育・教養　<%= budget.liberal_art - @liberal_art %></li>
-                        <li>通信費　<%= budget.communicate - @communicate %></li>
-                        <li>健康・医療　<%= budget.medical - @medical %></li>
-                        <li>その他　<%= budget.other - @other %></li>
-                    <% end %>
-                </div>
-            </div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-6"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
+        <div class="col-6"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
+        <div class="col-12">
+            <h1 class="text-center"><%= @month %></h1>
+            <h3 class="text-center">収支 <%= @balance.to_s(:delimited, delimiter: ',') %>円</h3>
+            <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <%= "食費#{@bfood.to_s(:delimited)}円" %>
+        </div>
+    </div>
+</div>
 <% else %>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-                <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
-                <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
-            </div>
-            <div class="col-lg-4"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h3 class="text-center">登録がまだの方<%= link_to "新規登録", new_user_registration_path %></br></h3>
+            <h3 class="text-center">登録済みの方<%= link_to "ログイン", new_user_session_path %></h3>
         </div>
+        <div class="col-lg-4"></div>
     </div>
+</div>
 <% end %>
 
 <div class="container">
     <div class="row mt-5 mb-5">
-        <div class="col-lg-4 border mt-1 pr-1 rounded">
+        <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
-                <%= image_tag 'kakei.jpg', size: '300x200' %>
+                <div style="text-align: center">
+                    <%= image_tag 'kakei.jpg', size: '300x200' %>
+                </div>
                 <h4><%= link_to "家計簿", balances_path %></h4>
-                <p><%= link_to "収支登録はこちら",register_path, class: "btn btn-secondary" %></p>
+                <p><%= link_to "収支登録はこちら",register_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
-        <div class="col-lg-4 border mt-1 pr-1 rounded">
+        <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
-                <%= image_tag 'kakei.jpg', size: '300x200' %>
+                <div style="text-align: center">
+                    <%= image_tag 'kakei.jpg', size: '300x200' %>
+                </div>
                 <h4><%= link_to "予算", budgets_path %></h4>
-                <p><%= link_to "予算設定はこちら",budgets_path, class: "btn btn-secondary" %></p>
+                <p><%= link_to "予算設定はこちら",budgets_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
-        <div class="col-lg-4 border mt-1 pr-1 rounded">
+        <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
-                <%= image_tag '1.jpg', size: '300x200' %>
+                <div style="text-align: center">
+                    <%= image_tag '1.jpg', size: '300x200' %>
+                </div>
                 <h4><%= link_to "ブログ一覧", search_blogs_path %></h4>
                 <p></p>
                 <p></p>
-                <p><%= link_to "投稿はこちら", new_blog_path, class: "btn btn-secondary" %></p>
+                <p><%= link_to "投稿はこちら", new_blog_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
-        <div class="col-lg-4 border mt-1 pr-1 rounded">
+        <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
-                <%= image_tag 'simulation.jpg', size: '300x200' %>
+                <div style="text-align: center">
+                    <%= image_tag 'simulation.jpg', size: '300x200' %>
+                </div>
                 <h4>家計シミュレーション</h4>
                 <p>今後更新予定</p>
                 <p></p>
             </content>
         </div>
-        <div class="col-lg-4 border mt-1 pr-1 rounded">
+        <div class="col-lg-4 border mt-1 p-3 rounded">
            <content>
-               <%= image_tag 'data.jpg', size: '300x200' %>
+                <div style="text-align: center">
+                   <%= image_tag 'data.jpg', size: '300x200' %>
+                </div>
                 <h4><%= link_to "家計データ", report_path %></h4>
                 <p></p>
-                <p><%= link_to "家計データ", report_path, class: "btn btn-secondary" %></p>
+                <p><%= link_to "家計データ", report_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
-        <div class="col-lg-4 border mt-1 pr-1 rounded">
+        <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
+                <div style="text-align: center"></div>
                 <%= image_tag 'mypage.jpg', size: '300x200' %>
                 <h4><%= link_to "マイページ", mypage_path %></h4>
                 <p></p>
-                <p><%= link_to "マイページはこちら", mypage_path, class: "btn btn-secondary" %></p>
+                <p><%= link_to "マイページはこちら", mypage_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
-    </div>
-</div>
     </div>
 </div>

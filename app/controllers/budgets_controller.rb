@@ -5,7 +5,7 @@ class BudgetsController < ApplicationController
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
     @budget = Budget.find_by(user_id: current_user.id)
     @expenses = current_user.balances.where(balance: 1, period: @month.all_month)#その月の支出
-    
+
     @food = @expenses.where(genre: 1, period: @month.all_month).sum(:amount)
     @house = @expenses.where(genre: 2, period: @month.all_month).sum(:amount)
     @daily = @expenses.where(genre: 3, period: @month.all_month).sum(:amount)
@@ -26,23 +26,16 @@ class BudgetsController < ApplicationController
     @budget_new = Budget.new(budget_params)
     @budget_new.user_id = current_user.id
     if @budget_new.save
-      redirect_to edit_budget_path(@budget_new)
+      redirect_to budgets_path
     else
       render :new
     end
   end
 
-  def edit
-    @budget = Budget.find(params[:id])
-  end
-
-  def update
-    @budget = Budget.find(params[:id])
-    if @budget.update(budget_params)
-      redirect_to edit_budget_path(@budget)
-    else
-      render :edit
-    end
+  def destroy
+    budget = Budget.find_by(user_id: current_user.id)
+    budget.destroy
+    redirect_to new_budget_path
   end
 
   private

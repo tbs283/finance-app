@@ -51,6 +51,9 @@
         <p><%= "支出#{@other.to_s(:delimited)}円" %></p>
         <p><%= "予算#{@budget.other.to_s(:delimited)}円" %></p>
       </div>
+      <div>
+        <%= link_to "削除", budget_path(@budget), method: :delete %>
+      </div>
     </div>
   </div>
 </div>

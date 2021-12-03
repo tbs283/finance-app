@@ -1,24 +1,6 @@
 <div class="container">
   <div class="row mt-5 mb-5">
-    <div class="col-lg-3">
-      <h5>メニュー</h5>
-      <h6>収支</h6>
-      <li><%= link_to "収支一覧", balances_path %></li>
-      <li><%= link_to "支出",expense_path %></li>
-      <li><%= link_to "収入",income_path %></li>
-      <h6>ブログ</h6>
-      <li><%= link_to "ブログ一覧", search_blogs_path %></li>
-      <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
-      <h6>データ</h6>
-      <li><%= link_to "年間収支", yearbalance_path %></li>
-      <li><%= link_to "年間項目割合", yeargenre_path %></li>
-      <li><%= link_to "貯蓄推移", totalsaving_path %></li>
-      <h6>設定</h6>
-      <li><%= link_to "マイページ", mypage_path %></li>
-      <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
-    </div>
-    
-    <div class="col-lg-9">
+    <div class="col-lg-12">
       <h3>ブログ</h3>
       <div>
         <%= form_with url: search_blogs_path, method: :get, local: true do |f| %>
@@ -26,64 +8,23 @@
           <%= f.submit :search %>
         <% end %>
       </div>
-      <table class="table table-sm table-dark text-center table-striped table-hover mt-3 mb-3">
-        <thead>
-          <tr>
-            <th></th>
-            <th>タイトル</th>
-            <th>投稿者</th>
-            <th>コメント数</th>
-            <th>作成日</th>
-          </tr>
-        </thead>
+      <div class="row">
         <% @blogs_search.each do |blog| %>
-          <tbody>
-            <tr>
-              <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %></td>
-              <td><%= link_to "#{blog.title}", blog_path(blog.id) %></td>
-              <td>
+          <div class="col-lg-3">
+            <content>
+              <h5><%= link_to "#{blog.title}", blog_path(blog.id) %></h5>
+              <p><%= blog.content.truncate(30) %></p>
+              <p><%= blog.comments.count %>コメント</p>
+              <p>
+                <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %>
                 <%= link_to user_path(blog.user_id) do %>
                   <%= blog.user.name %>
                 <% end %>
-              </td>
-              <td><%= blog.comments.count %>コメント</td>
-              <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-            </tr>
-          </tbody>
+              </p>
+            </content>
+          </div>
         <% end %>
-      </table>
-      <table class="table table-sm table-dark text-center table-striped table-hover mt-3 mb-3">
-        <thead>
-          <tr>
-            <th style="width: 5%"></th>
-            <th style="width: 15%">タイトル</th>
-            <th style="width: 15%">投稿者</th>
-            <th style="width: 12%">コメント数</th>
-            <th style="width: 13%">作成日</th>
-            <th style="width: 40%">本文</th>
-          </tr>
-        </thead>
-        <% @blogs.each do |blog| %>
-          <tbody>
-            <tr>
-              <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %></td>
-              <td>
-                <%= link_to blog_path(blog.id) do %>
-                  <%= blog.title.truncate(8) %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to user_path(blog.user_id) do %>
-                  <%= blog.user.name.truncate(7) %>
-                <% end %>
-              </td>
-              <td><%= blog.comments.count %>コメント</td>
-              <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-              <td><%= blog.content.truncate(20) %></td>
-            </tr>
-          </tbody>
-        <% end %>
-      </table>
+      </div>
       <%= paginate @blogs %>
     </div>
   </div>

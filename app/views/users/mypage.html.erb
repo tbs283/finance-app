@@ -1,29 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <h5>メニュー</h5>
-      <h6>収支</h6>
-      <li><%= link_to "収支一覧", balances_path %></li>
-      <li><%= link_to "支出",expense_path %></li>
-      <li><%= link_to "収入",income_path %></li>
-      <h6>ブログ</h6>
-      <li><%= link_to "ブログ一覧", search_blogs_path %></li>
-      <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
-      <h6>データ</h6>
-      <li><%= link_to "年間収支", yearbalance_path %></li>
-      <li><%= link_to "年間項目割合", yeargenre_path %></li>
-      <li><%= link_to "貯蓄推移", totalsaving_path %></li>
-      <li><%= link_to "キャッシュフロー表", cashflow_path %></li>
-      <h6>設定</h6>
-      <li>固定費</li>
-      <li><%= link_to "予算", new_budget_path %></li>
-      <li><%= link_to "マイページ", mypage_path %></li>
-      <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
-    </div>
 
     <div class="col-lg-9">
       <h3>ユーザー情報</h3>
-      <table class="text-center table table-bordered mt-3 mb-3">
+      <table class="text-center tablemt-3 mb-3">
         <thead class="thead-dark">
           <tr>
             <th></th>
@@ -43,6 +23,7 @@
           </tr>
         </tbody>
       </table>
+      <h3>自身の投稿</h3>
       <h3>予算</h3>
       <table class="text-center table table-bordered mt-3 mb-3">
         <thead class="thead-dark">
@@ -96,6 +77,6 @@
           </tbody>
         <% end %>
       </table>
-      <h3>固定</h3>
+      <h3>固定費（今後追加予定）</h3>
     </div>
   </div>
