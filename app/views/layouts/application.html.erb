@@ -37,7 +37,24 @@
        </div>
       </nav>
     </header>
-    
+
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <%= link_to "収支一覧", balances_path, class: "btn btn-secondary" %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to "収支登録",register_path, class: "btn btn-secondary" %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to "予算",budgets_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

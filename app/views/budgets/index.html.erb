@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <div>
+        <h5>食費</h5>
+        <p><%= "支出#{@food.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.food.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>住居費</h5>
+        <p><%= "支出#{@house.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.house.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>日用品</h5>
+        <p><%= "支出#{@daily.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.daily.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5水道光熱費></h5>
+        <p><%= "支出#{@utility.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.utility.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>衣類</h5>
+        <p><%= "支出#{@cloth.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.cloth.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>趣味・娯楽</h5>
+        <p><%= "支出#{@hobby.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.hobby.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>教育・教養</h5>
+        <p><%= "支出#{@liberal_art.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.liberal_art.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>通信費</h5>
+        <p><%= "支出#{@communicate.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.communicate.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>健康・医療</h5>
+        <p><%= "支出#{@medical.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.medical.to_s(:delimited)}円" %></p>
+      </div>
+      <div>
+        <h5>その他</h5>
+        <p><%= "支出#{@other.to_s(:delimited)}円" %></p>
+        <p><%= "予算#{@budget.other.to_s(:delimited)}円" %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!--<li>食費　<%# budget.food - @food %></li>-->
+  <!--<li>住居費　<%# budget.house - @house %></li>-->
+  <!--<li>日用品　<%# budget.daily - @daily %></li>-->
+  <!--<li>水道光熱費　<%# budget.utility - @utility %></li>-->
+  <!--<li>衣類　<%# budget.cloth - @cloth %></li>-->
+  <!--<li>趣味・娯楽　<%# budget.hobby - @hobby %></li>-->
+  <!--<li>教育・教養　<%# budget.liberal_art - @liberal_art %></li>-->
+  <!--<li>通信費　<%# budget.communicate - @communicate %></li>-->
+  <!--<li>健康・医療　<%# budget.medical - @medical %></li>-->
+  <!--<li>その他　<%# budget.other - @other %></li>-->

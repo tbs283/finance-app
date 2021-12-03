@@ -6,7 +6,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active bg-primary">
+            <div class="carousel-item active w-100">
                 <div class="container">
                     <div class="row">
                         <div class="col-6"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item bg-primary">
+            <div class="carousel-item w-100">
                 <div class="col-lg-6 mt-3"></div>
                 <div class="col-lg-6 pt-5 mt-3">
                     <% @budget.each do |budget| %>
@@ -35,9 +35,6 @@
                         <li>その他　<%= budget.other - @other %></li>
                     <% end %>
                 </div>
-            </div>
-            <div class="carousel-item bg-primary">
-            
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -64,91 +61,54 @@
 
 <div class="container">
     <div class="row mt-5 mb-5">
-        <div class="col-lg-3">
-            <h5>メニュー</h5>
-            <h6>収支</h6>
-            <li><%= link_to "収支一覧", balances_path %></li>
-            <li><%= link_to "支出",expense_path %></li>
-            <li><%= link_to "収入",income_path %></li>
-            <h6>ブログ</h6>
-            <li><%= link_to "ブログ一覧", search_blogs_path %></li>
-            <li><%= link_to "ブログ新規投稿", new_blog_path %></li>
-            <h6>診断</h6>
-            <li>FP診断</li>
-            <h6>データ</h6>
-            <li><%= link_to "年間収支", yearbalance_path %></li>
-            <li><%= link_to "年間項目割合", yeargenre_path %></li>
-            <li><%= link_to "貯蓄推移", totalsaving_path %></li>
-            <li><%= link_to "キャッシュフロー表", cashflow_path %></li>
-            <h6>設定</h6>
-            <li>固定費</li>
-            <li><%= link_to "予算", new_budget_path %></li>
-            <li><%= link_to "マイページ", mypage_path %></li>
-            <% if user_signed_in? %>
-                <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
-            <% else %>
-            <% end %>
+        <div class="col-lg-4 border mt-1 pr-1 rounded">
+            <content>
+                <%= image_tag 'kakei.jpg', size: '300x200' %>
+                <h4><%= link_to "家計簿", balances_path %></h4>
+                <p><%= link_to "収支登録はこちら",register_path, class: "btn btn-secondary" %></p>
+            </content>
         </div>
-        <div class="col-lg-9">
-            <h5>新着ブログ</h5>
-            <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
-                <thead>
-                    <tr>
-                        <th style="width: 20%">タイトル</th>
-                        <th style="width: 5%"></th>
-                        <th style="width: 15%">投稿者</th>
-                        <th style="width: 15%">作成日</th>
-                        <th style="width: 45%">本文</th>
-                    </tr>
-                </thead>
-                <% @new_blog.first(8).each do |blog| %>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <%= link_to blog_path(blog.id) do %>
-                                    <%= blog.title.truncate(10) %>
-                                <% end %>
-                            </td>
-                            <td><%= attachment_image_tag blog.user, :image, size: "35x28", format: 'png', fallback: "no_image.jpg" %></td>
-                            <td>
-                                <%= link_to user_path(blog.user_id) do %>
-                                    <%= blog.user.name.truncate(7) %>
-                                <% end %>
-                            </td>
-                            <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-                            <td><%= blog.content.truncate(20) %></td>
-                        </tr>
-                    </tbody>
-                <% end %>
-            </table>
-            <h5>人気のブログ</h5>
-            <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
-                <thead>
-                    <tr>
-                        <th style="width: 20%">タイトル</th>
-                        <th style="width: 5%"></th>
-                        <th style="width: 15%">投稿者</th>
-                        <th style="width: 15%">作成日</th>
-                        <th style="width: 45%">本文</th>
-                    </tr>
-                </thead>
-                <% @blog_ranks.first(8).each do |blog| %>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <%= link_to blog_path(blog.id) do %>
-                                    <%= blog.title.truncate(10) %>
-                                <% end %>
-                            </td>
-                            <td><%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg" %></td>
-                            <td><%= link_to "#{blog.user.name}", user_path(blog.user_id).truncate(7) %></td>
-                            <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
-                            <td><%= blog.content.truncate(20) %></td>
-                        </tr>
-                    </tbody>
-                <% end %>
-            </table>
-            <p class="text-lg-right"><%= link_to "もっと見る", search_blogs_path %></p>
+        <div class="col-lg-4 border mt-1 pr-1 rounded">
+            <content>
+                <%= image_tag 'kakei.jpg', size: '300x200' %>
+                <h4><%= link_to "予算", budgets_path %></h4>
+                <p><%= link_to "予算設定はこちら",budgets_path, class: "btn btn-secondary" %></p>
+            </content>
         </div>
+        <div class="col-lg-4 border mt-1 pr-1 rounded">
+            <content>
+                <%= image_tag '1.jpg', size: '300x200' %>
+                <h4><%= link_to "ブログ一覧", search_blogs_path %></h4>
+                <p></p>
+                <p></p>
+                <p><%= link_to "投稿はこちら", new_blog_path, class: "btn btn-secondary" %></p>
+            </content>
+        </div>
+        <div class="col-lg-4 border mt-1 pr-1 rounded">
+            <content>
+                <%= image_tag 'simulation.jpg', size: '300x200' %>
+                <h4>家計シミュレーション</h4>
+                <p>今後更新予定</p>
+                <p></p>
+            </content>
+        </div>
+        <div class="col-lg-4 border mt-1 pr-1 rounded">
+           <content>
+               <%= image_tag 'data.jpg', size: '300x200' %>
+                <h4><%= link_to "家計データ", report_path %></h4>
+                <p></p>
+                <p><%= link_to "家計データ", report_path, class: "btn btn-secondary" %></p>
+            </content>
+        </div>
+        <div class="col-lg-4 border mt-1 pr-1 rounded">
+            <content>
+                <%= image_tag 'mypage.jpg', size: '300x200' %>
+                <h4><%= link_to "マイページ", mypage_path %></h4>
+                <p></p>
+                <p><%= link_to "マイページはこちら", mypage_path, class: "btn btn-secondary" %></p>
+            </content>
+        </div>
+    </div>
+</div>
     </div>
 </div>

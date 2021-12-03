@@ -3,6 +3,7 @@ class BalancesController < ApplicationController
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
     @balances = current_user.balances
     @balance_new = Balance.new
+    @balances = @balances.where(period: @month.all_month)#その月の収支
     @incomes = @balances.where(balance: 0, period: @month.all_month)#その月の収入
     @expenses = @balances.where(balance: 1, period: @month.all_month)#その月の支出
     @income_sum = @incomes.sum(:amount)#その月の収入の合計
@@ -15,7 +16,7 @@ class BalancesController < ApplicationController
     @saving = @income_all_sum-@expense_all_sum#貯金額
   end
   
-  def income
+  def register
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
     @balances = current_user.balances
     @balance_new = Balance.new
