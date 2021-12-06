@@ -40,6 +40,7 @@ class HomesController < ApplicationController
         @bcommunicate= @budget.communicate-@communicate
         @bmedical = @budget.medical-@medical
         @bother = @budget.other-@other
+        @foodper = @bfood/@budget.food*100
       end
     else
     end

@@ -1,8 +1,12 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-lg-9">
-      <h3>貯金推移</h3>
+    <h3>貯金推移</h3>
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg-4">
       <h4>現在の貯金額 <%= @saving.to_s(:delimited, delimiter: ',') %>円</h4>
+    </div>
+    <div class="col-lg-3">
       <p>１月</p>
       <p>２月</p>
       <p>３月</p>

@@ -5,10 +5,6 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @incomes = current_user.balances.where(balance: 0).sum(:amount)
-    @expenses = current_user.balances.where(balance: 1).sum(:amount)
-    @savings = @incomes - @expenses
-    @budget = current_user.budgets
   end
 
   def create

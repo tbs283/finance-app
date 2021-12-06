@@ -12,6 +12,24 @@
       </div>
       <div class="border rounded m-3 p-3">
         <h5 class="border-bottom">自身の投稿</h3>
+        <table>
+          <tr>
+            <th>タイトル</th>
+            <th>本文</th>
+            <th>作成日</th>
+            <th>いいね数</th>
+            <th>コメント数</th>
+          </tr>
+          <% @user.blogs.each do |blog| %>
+          <tr>
+            <td><%= link_to "#{blog.title}", blog_path(blog.id) %></td>
+            <td><%= blog.content.truncate(20) %></td>
+            <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
+            <td>♥<%= blog.favorites.count %> いいね</td>
+            <td><%= blog.comments.count %>コメント</td>
+          </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>

@@ -9,89 +9,85 @@
             <h4 class="text-center pt-1">支出 <%= @expense_sum.to_s(:delimited, delimiter: ',') %>円        収入 <%= @income_sum.to_s(:delimited, delimiter: ',') %>円</h3>
         </div>
     </div>
-</div>
     <% if @budget.present? %>
-        <div class="container">
-            <div class="row border mt-3">
-                <div class="col-lg-6">
-                    <div class="border-bottom">
-                        <%= "残り#{@bfood.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "食費#{@food.to_s(:delimited)}円" %><%= "予算#{@budget.food.to_s(:delimited)}円" %>
+        <div class="row border mt-3">
+            <div class="col-lg-6">
+                <div class="border-bottom">
+                    <%= "残り#{@bfood.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @foodper.to_s %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @foodper.to_s + "%;" %>> <%= @foodper.floor %>% </div>
                     </div>
-                    <div class="border-bottom">
-                        <%= "残り#{@bhouse.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "住居費#{@house.to_s(:delimited)}円" %><%= "予算#{@budget.house.to_s(:delimited)}円" %>
-                    </div>
-                    <div class="border-bottom">
-                        <%= "残り#{@bdaily.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "日用品#{@daily.to_s(:delimited)}円" %><%= "予算#{@budget.daily.to_s(:delimited)}円" %>
-                    </div>
-                    <div class="border-bottom">
-                        <%= "残り#{@butility.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "水道光熱費#{@utility.to_s(:delimited)}円" %><%= "予算#{@budget.utility.to_s(:delimited)}円" %>
-                    </div>
-                    <div>
-                        <%= "残り#{@bcloth.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "衣類#{@cloth.to_s(:delimited)}円" %><%= "予算#{@budget.cloth.to_s(:delimited)}円" %>
-                    </div>
+                    <%= "食費#{@food.to_s(:delimited)}円" %> <%= "予算#{@budget.food.to_s(:delimited)}円" %>
                 </div>
-                <div class="col-lg-6">
-                    <div class="border-bottom">
-                        <%= "残り#{@bhobby.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "趣味・娯楽#{@hobby.to_s(:delimited)}円" %><%= "予算#{@budget.hobby.to_s(:delimited)}円" %>
+                <div class="border-bottom">
+                    <%= "残り#{@bhouse.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
                     </div>
-                    <div class="border-bottom">
-                        <%= "残り#{@bliberal_art.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "教育・教養#{@liberal_art.to_s(:delimited)}円" %><%= "予算#{@budget.liberal_art.to_s(:delimited)}円" %>
+                    <%= "住居費#{@house.to_s(:delimited)}円" %> <%= "予算#{@budget.house.to_s(:delimited)}円" %>
+                </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bdaily.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
                     </div>
-                    <div class="border-bottom">
-                        <%= "残り#{@bcommunicate.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "通信費#{@communicate.to_s(:delimited)}円" %><%= "予算#{@budget.communicate.to_s(:delimited)}円" %>
+                    <%= "日用品#{@daily.to_s(:delimited)}円" %> <%= "予算#{@budget.daily.to_s(:delimited)}円" %>
+                </div>
+                <div class="border-bottom">
+                    <%= "残り#{@butility.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
                     </div>
-                    <div class="border-bottom">
-                        <%= "残り#{@bmedical.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "健康・医療#{@medical.to_s(:delimited)}円" %><%= "予算#{@budget.medical.to_s(:delimited)}円" %>
+                    <%= "水道光熱費#{@utility.to_s(:delimited)}円" %> <%= "予算#{@budget.utility.to_s(:delimited)}円" %>
+                </div>
+                <div>
+                    <%= "残り#{@bcloth.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
                     </div>
-                    <div>
-                        <%= "残り#{@bother.to_s(:delimited)}円" %>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
-                        </div>
-                        <%= "その他#{@other.to_s(:delimited)}円" %><%= "予算#{@budget.other.to_s(:delimited)}円" %>
+                    <%= "衣類#{@cloth.to_s(:delimited)}円" %> <%= "予算#{@budget.cloth.to_s(:delimited)}円" %>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="border-bottom">
+                    <%= "残り#{@bhobby.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
                     </div>
+                    <%= "趣味・娯楽#{@hobby.to_s(:delimited)}円" %> <%= "予算#{@budget.hobby.to_s(:delimited)}円" %>
+                </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bliberal_art.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                    </div>
+                    <%= "教育・教養#{@liberal_art.to_s(:delimited)}円" %> <%= "予算#{@budget.liberal_art.to_s(:delimited)}円" %>
+                </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bcommunicate.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                    </div>
+                    <%= "通信費#{@communicate.to_s(:delimited)}円" %> <%= "予算#{@budget.communicate.to_s(:delimited)}円" %>
+                </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bmedical.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                    </div>
+                    <%= "健康・医療#{@medical.to_s(:delimited)}円" %> <%= "予算#{@budget.medical.to_s(:delimited)}円" %>
+                </div>
+                <div>
+                    <%= "残り#{@bother.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                    </div>
+                    <%= "その他#{@other.to_s(:delimited)}円" %> <%= "予算#{@budget.other.to_s(:delimited)}円" %>
                 </div>
             </div>
         </div>
     <% end %>
 <% else %>
-<div class="container">
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -100,17 +96,16 @@
         </div>
         <div class="col-lg-4"></div>
     </div>
-</div>
 <% end %>
 
-<div class="container">
     <div class="row mt-3 mb-5">
         <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
                 <div style="text-align: center">
                     <%= image_tag 'kakei.jpg', size: '300x200' %>
                 </div>
-                <h4><%= link_to "家計簿", balances_path %></h4>
+                <h5 class="border-bottom"><%= link_to "家計簿", balances_path %></h5>
+                <p>収支を記録することができます。収支を記録することで家計の改善を目指しましょう。</p>
                 <p><%= link_to "収支登録はこちら",register_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
@@ -119,7 +114,8 @@
                 <div style="text-align: center">
                     <%= image_tag 'kakei.jpg', size: '300x200' %>
                 </div>
-                <h4><%= link_to "予算", budgets_path %></h4>
+                <h5 class="border-bottom"><%= link_to "予算", budgets_path %></h5>
+                <p>月間の予算を設定することができます。</p>
                 <p><%= link_to "予算設定はこちら",new_budget_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
@@ -128,9 +124,8 @@
                 <div style="text-align: center">
                     <%= image_tag '1.jpg', size: '300x200' %>
                 </div>
-                <h4><%= link_to "ブログ一覧", search_blogs_path %></h4>
-                <p></p>
-                <p></p>
+                <h5 class="border-bottom"><%= link_to "ブログ一覧", search_blogs_path %></h5>
+                <p>お金に関するブログを投稿、閲覧することができます。他の人の考えや経験を参考にして、家計の改善を目指しましょう。</p>
                 <p><%= link_to "投稿はこちら", new_blog_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
@@ -139,7 +134,7 @@
                 <div style="text-align: center">
                     <%= image_tag 'simulation.jpg', size: '300x200' %>
                 </div>
-                <h4>家計シミュレーション</h4>
+                <h5 class="border-bottom">家計シミュレーション</h5>
                 <p>今後更新予定</p>
                 <p></p>
             </content>
@@ -149,8 +144,8 @@
                 <div style="text-align: center">
                    <%= image_tag 'data.jpg', size: '300x200' %>
                 </div>
-                <h4><%= link_to "家計データ", report_path %></h4>
-                <p></p>
+                <h5 class="border-bottom"><%= link_to "家計データ", report_path %></h5>
+                <p>自身の家計簿のグラフで表示します。分析して家計の改善に努めましょう。</p>
                 <p><%= link_to "家計データ", report_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
@@ -158,8 +153,8 @@
             <content>
                 <div style="text-align: center"></div>
                 <%= image_tag 'mypage.jpg', size: '300x200' %>
-                <h4><%= link_to "マイページ", mypage_path %></h4>
-                <p></p>
+                <h5 class="border-bottom"><%= link_to "マイページ", mypage_path %></h5>
+                <p>自身の情報を設定できます。</p>
                 <p><%= link_to "マイページはこちら", mypage_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>

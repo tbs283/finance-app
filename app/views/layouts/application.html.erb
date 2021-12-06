@@ -37,21 +37,46 @@
        </div>
       </nav>
     </header>
+    <header class="fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container">
+         <a class="navbar-brand" href="/"><span>FinanceApp</span></a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+           <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                  <li class="fas nav-link text-light"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "マイページ", mypage_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "新規投稿", new_blog_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "ブログ", search_blogs_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "収支一覧", balances_path, class: "btn btn-secondary" %></li>
+                <% else %>
+                  <li class="fas nav-link text-light"><%= link_to "ブログ", search_blogs_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary" %></li>
+                  <li class="fas nav-link text-light"><%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %></li>
+                <% end %>
+           </ul>
+         </div>
+       </div>
+      </nav>
+    </header>
 
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer class="bg-dark text-white fixed-bottom pt-2 pb-2">
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-md-4">
-            <%= link_to "収支一覧", balances_path, class: "btn btn-secondary" %>
+          <div class="col-md-4 text-center">
+            <%= link_to "収支一覧", balances_path, class: "btn btn-secondary btn-sm" %>
           </div>
-          <div class="col-md-4">
-            <%= link_to "収支登録",register_path, class: "btn btn-secondary" %>
+          <div class="col-md-4 text-center">
+            <%= link_to "収支登録",register_path, class: "btn btn-secondary btn-sm" %>
           </div>
-          <div class="col-md-4">
-            <%= link_to "予算",budgets_path, class: "btn btn-secondary" %>
+          <div class="col-md-4 text-center">
+            <%= link_to "予算",budgets_path, class: "btn btn-secondary btn-sm" %>
           </div>
         </div>
       </div>
