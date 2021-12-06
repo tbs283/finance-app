@@ -4,25 +4,32 @@
         <%= message %>
       <% end %>
     <% end %>
-
-    <div class="col-lg-8">
-      <h5>収支を登録</h5>
-      <div class="row">
-        <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
-          <%= f.select :balance, [['収入', 0], ['支出', 1]], { include_blank: true} %>
-          <div class="col-5">
-            <%= f.label :period, "日付" %><%= f.date_field :period %>
-            <%= f.label :amount, "金額" %><%= f.number_field :amount %>円
-          </div>
-          <div class="col-5">
-            <%= f.label :genre, "項目" %><%= f.select :genre, [['食費', 1], ['住居費', 2], ['日用品', 3], ['水道光熱費', 4], ['衣服', 5], ['趣味・娯楽', 6], ['教養・教育', 7], ['通信費', 8], ['健康・医療', 9], ['給料', 11], ['お小遣い', 12], ['賞与', 13] ,['副業', 14] ,['投資', 15] ,['臨時収入', 16] ,['その他', 10]], { include_blank: true} %>
-            <%= f.label :description, "説明" %><%= f.text_field :description %>
-          </div>
-          <div class="col-2">
-            <%= f.submit '新規登録' %>
-          </div>
-        <% end %>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="border rounded p-3 m-3">
+      <h5 class="border-bottom">収支を登録</h5>
+      <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
+      <p>
+        <%= f.select :balance, [['収入', 0], ['支出', 1]], { include_blank: true} %>
+      </p>
+      <p>
+        <%= f.label :period, "日付" %>
+        <%= f.date_field :period %>
+      </p>
+      <p>
+        <%= f.label :amount, "金額" %>
+        <%= f.number_field :amount %>円
+      </p>
+      <p>
+        <%= f.label :genre, "項目" %>
+        <%= f.select :genre, [['食費', 1], ['住居費', 2], ['日用品', 3], ['水道光熱費', 4], ['衣服', 5], ['趣味・娯楽', 6], ['教養・教育', 7], ['通信費', 8], ['健康・医療', 9], ['給料', 11], ['お小遣い', 12], ['賞与', 13] ,['副業', 14] ,['投資', 15] ,['臨時収入', 16] ,['その他', 10]], { include_blank: true} %>
+      </p>
+      <p>
+        <%= f.label :description, "説明" %>
+        <%= f.text_field :description %>
+      </p>
+      <p><%= f.submit '新規登録' %></p>
+      <% end %>
     </div>
   </div>
 </div>

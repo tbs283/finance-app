@@ -29,16 +29,18 @@ class HomesController < ApplicationController
       @medical = @expenses.where(genre: 9, period: @month.all_month).sum(:amount) #当月の医療費
       @other = @expenses.where(genre: 10, period: @month.all_month).sum(:amount) #当月のその他費用
       #予算と支出の差額
-      @bfood = @budget.food-@food
-      @bhouse = @budget.house-@house
-      @bdaily = @budget.daily-@daily
-      @butility = @budget.utility-@utility
-      @bcloth= @budget.cloth-@cloth
-      @bhobby= @budget.hobby-@hobby
-      @bliberal_art = @budget.liberal_art-@liberal_art
-      @bcommunicate= @budget.communicate-@communicate
-      @bmedical = @budget.medical-@medical
-      @bother = @budget.other-@other
+      if @budget.present?
+        @bfood = @budget.food-@food
+        @bhouse = @budget.house-@house
+        @bdaily = @budget.daily-@daily
+        @butility = @budget.utility-@utility
+        @bcloth= @budget.cloth-@cloth
+        @bhobby= @budget.hobby-@hobby
+        @bliberal_art = @budget.liberal_art-@liberal_art
+        @bcommunicate= @budget.communicate-@communicate
+        @bmedical = @budget.medical-@medical
+        @bother = @budget.other-@other
+      end
     else
     end
   end

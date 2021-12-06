@@ -1,21 +1,32 @@
 class BudgetsController < ApplicationController
-  before_action :budget_counter, only: [:new]
-
   def index
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
+    @balances = current_user.balances
+    @expenses = @balances.where(balance: 1, period: @month.all_month)#その月の支出
+    @expense_sum = @expenses.sum(:amount) #その月の支出の合計
+    
     @budget = Budget.find_by(user_id: current_user.id)
-    @expenses = current_user.balances.where(balance: 1, period: @month.all_month)#その月の支出
-
-    @food = @expenses.where(genre: 1, period: @month.all_month).sum(:amount)
-    @house = @expenses.where(genre: 2, period: @month.all_month).sum(:amount)
-    @daily = @expenses.where(genre: 3, period: @month.all_month).sum(:amount)
-    @utility = @expenses.where(genre: 4, period: @month.all_month).sum(:amount)
-    @cloth = @expenses.where(genre: 5, period: @month.all_month).sum(:amount)
-    @hobby = @expenses.where(genre: 6, period: @month.all_month).sum(:amount)
-    @liberal_art = @expenses.where(genre: 7, period: @month.all_month).sum(:amount)
-    @communicate = @expenses.where(genre: 8, period: @month.all_month).sum(:amount)
-    @medical = @expenses.where(genre: 9, period: @month.all_month).sum(:amount)
-    @other = @expenses.where(genre: 10, period: @month.all_month).sum(:amount)
+    @food = @expenses.where(genre: 1, period: @month.all_month).sum(:amount) #当月の食費
+    @house = @expenses.where(genre: 2, period: @month.all_month).sum(:amount) #当月の住居費
+    @daily = @expenses.where(genre: 3, period: @month.all_month).sum(:amount) #当月の日用品
+    @utility = @expenses.where(genre: 4, period: @month.all_month).sum(:amount) #当月の水道光熱費
+    @cloth = @expenses.where(genre: 5, period: @month.all_month).sum(:amount) #当月の衣類
+    @hobby = @expenses.where(genre: 6, period: @month.all_month).sum(:amount) #当月の趣味娯楽費
+    @liberal_art = @expenses.where(genre: 7, period: @month.all_month).sum(:amount) #当月の教養
+    @communicate = @expenses.where(genre: 8, period: @month.all_month).sum(:amount) #当月の通信費
+    @medical = @expenses.where(genre: 9, period: @month.all_month).sum(:amount) #当月の医療費
+    @other = @expenses.where(genre: 10, period: @month.all_month).sum(:amount) #当月のその他費用
+    #予算と支出の差額
+    @bfood = @budget.food-@food
+    @bhouse = @budget.house-@house
+    @bdaily = @budget.daily-@daily
+    @butility = @budget.utility-@utility
+    @bcloth= @budget.cloth-@cloth
+    @bhobby= @budget.hobby-@hobby
+    @bliberal_art = @budget.liberal_art-@liberal_art
+    @bcommunicate= @budget.communicate-@communicate
+    @bmedical = @budget.medical-@medical
+    @bother = @budget.other-@other
   end
 
   def new
@@ -36,13 +47,6 @@ class BudgetsController < ApplicationController
     budget = Budget.find_by(user_id: current_user.id)
     budget.destroy
     redirect_to new_budget_path
-  end
-
-  private
-  def budget_counter
-    if current_user.budgets.count == 1
-      redirect_to edit_budget_path(id:1) #Userがbudgetをちょうど一つ持っている時にeditに飛ばす
-    end
   end
 
   def budget_params

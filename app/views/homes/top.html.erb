@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 <div class="container">
-    <div class="row mt-3">
+    <div class="row mt-3 p-3 border mb-3">
         <div class="col-6"><%= pie_chart @expenses.group(:genre).sum(:amount) %></div>
         <div class="col-6"><%= pie_chart @incomes.group(:genre).sum(:amount) %></div>
         <div class="col-12">
@@ -10,16 +10,86 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+    <% if @budget.present? %>
+        <div class="container">
+            <div class="row border mt-3">
+                <div class="col-lg-6">
+                    <div class="border-bottom">
+                        <%= "残り#{@bfood.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "食費#{@food.to_s(:delimited)}円" %><%= "予算#{@budget.food.to_s(:delimited)}円" %>
+                    </div>
+                    <div class="border-bottom">
+                        <%= "残り#{@bhouse.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "住居費#{@house.to_s(:delimited)}円" %><%= "予算#{@budget.house.to_s(:delimited)}円" %>
+                    </div>
+                    <div class="border-bottom">
+                        <%= "残り#{@bdaily.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "日用品#{@daily.to_s(:delimited)}円" %><%= "予算#{@budget.daily.to_s(:delimited)}円" %>
+                    </div>
+                    <div class="border-bottom">
+                        <%= "残り#{@butility.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "水道光熱費#{@utility.to_s(:delimited)}円" %><%= "予算#{@budget.utility.to_s(:delimited)}円" %>
+                    </div>
+                    <div>
+                        <%= "残り#{@bcloth.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "衣類#{@cloth.to_s(:delimited)}円" %><%= "予算#{@budget.cloth.to_s(:delimited)}円" %>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="border-bottom">
+                        <%= "残り#{@bhobby.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "趣味・娯楽#{@hobby.to_s(:delimited)}円" %><%= "予算#{@budget.hobby.to_s(:delimited)}円" %>
+                    </div>
+                    <div class="border-bottom">
+                        <%= "残り#{@bliberal_art.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "教育・教養#{@liberal_art.to_s(:delimited)}円" %><%= "予算#{@budget.liberal_art.to_s(:delimited)}円" %>
+                    </div>
+                    <div class="border-bottom">
+                        <%= "残り#{@bcommunicate.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "通信費#{@communicate.to_s(:delimited)}円" %><%= "予算#{@budget.communicate.to_s(:delimited)}円" %>
+                    </div>
+                    <div class="border-bottom">
+                        <%= "残り#{@bmedical.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "健康・医療#{@medical.to_s(:delimited)}円" %><%= "予算#{@budget.medical.to_s(:delimited)}円" %>
+                    </div>
+                    <div>
+                        <%= "残り#{@bother.to_s(:delimited)}円" %>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@food" aria-valuemin="0" aria-valuemax="@budget.food"></div>
+                        </div>
+                        <%= "その他#{@other.to_s(:delimited)}円" %><%= "予算#{@budget.other.to_s(:delimited)}円" %>
+                    </div>
+                </div>
             </div>
-            <%= "食費#{@bfood.to_s(:delimited)}円" %>
         </div>
-    </div>
-</div>
+    <% end %>
 <% else %>
 <div class="container">
     <div class="row">
@@ -34,7 +104,7 @@
 <% end %>
 
 <div class="container">
-    <div class="row mt-5 mb-5">
+    <div class="row mt-3 mb-5">
         <div class="col-lg-4 border mt-1 p-3 rounded">
             <content>
                 <div style="text-align: center">
@@ -50,7 +120,7 @@
                     <%= image_tag 'kakei.jpg', size: '300x200' %>
                 </div>
                 <h4><%= link_to "予算", budgets_path %></h4>
-                <p><%= link_to "予算設定はこちら",budgets_path, class: "btn btn-secondary btn-sm btn-block" %></p>
+                <p><%= link_to "予算設定はこちら",new_budget_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
         <div class="col-lg-4 border mt-1 p-3 rounded">
