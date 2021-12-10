@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_113720) do
+ActiveRecord::Schema.define(version: 2021_12_10_161928) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "user_id"
@@ -81,6 +81,9 @@ ActiveRecord::Schema.define(version: 2021_12_10_113720) do
     t.datetime "updated_at", null: false
     t.text "introduction"
     t.boolean "release", default: false, null: false
+    t.integer "region"
+    t.integer "age"
+    t.integer "sex"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

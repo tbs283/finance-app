@@ -11,8 +11,10 @@
       <h5 class="border-bottom">収支を登録</h5>
       <%= form_with model:@balance_new, url:balances_path, local: true do |f| %>
       <p>
-        <%= f.label :balance, "収支" %>
-        <%= f.select :balance, [['収入', 0], ['支出', 1]], { include_blank: true} %>
+        <%= f.radio_button :balance, 0 %>
+        <%= f.label :balance, '収入', value: 0 %>
+        <%= f.radio_button :balance, 1 %>
+        <%= f.label :balance, '支出', value: 1 %>
       </p>
       <p>
         <%= f.label :period, "日付" %>

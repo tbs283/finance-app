@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @userb = User.select('release').find_by(release: "true")
     @month = params[:month] ? Date.parse(params[:month]) : Time.zone.today
     @balance = @user.balances
     @balances = @balance.where(period: @month.all_month)#その月の収支

@@ -7,7 +7,7 @@
       <p><%= @user.introduction %></p>
     </div>
     <div class="col-lg-1">
-      <% if @user.release == "true" %>
+      <% if @userb %>
         <h5 class="border-bottom">今月の収支</h3>
         <table class="text-center table table-sm">
           <tr>
@@ -23,7 +23,7 @@
             <td class="text-right fs-15"><%= @balance_sum.to_s(:delimited, delimiter: ',') %>円</td>
           </tr>
         </table>
-      <% elsif  %>
+      <% else %>
       <% end %>
     </div>
     <div class="col-lg-6">

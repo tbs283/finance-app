@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="offset-md-1"></div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="border rounded m-3 p-3">
         <h5 class="border-bottom">今月の収支</h3>
         <table class="text-center table table-sm">
@@ -21,7 +21,7 @@
         <div class="field">
           <%= form_with model: @user, url:user_path(current_user), method: :patch, local:true do |f| %>
             <div class="done">
-              <%= f.label :release %>
+              <%= f.label :release, '収支公開' %>
               <div>
                 <%= f.radio_button :release, true %>
                 <%= f.label :release, '公開する', value: true %>
@@ -31,14 +31,14 @@
                 <%= f.label :release, '公開しない', value: false %>
               </div>
               <div>
-                <%= f.submit :update %>
+                <%= f.submit '変更する', class: "btn btn-secondary btn-sm"  %>
               </div>
             </div>
           <% end %>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-7">
       <div class="border rounded m-3 p-3">
         <h5 class="border-bottom">ユーザー情報</h3>
         <%= attachment_image_tag @user, :image, size: "100x100", class: "rounded-circle" %>
