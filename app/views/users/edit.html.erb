@@ -17,6 +17,18 @@
           <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
         </div>
         <div class="field">
+          <%= f.label :sex, "性別" %>
+          <%= f.select :sex, User.sexes.keys, {include_blank: true} %>
+        </div>
+        <div class="field">
+          <%= f.label :age, "年齢層" %>
+          <%= f.select :age, User.ages.keys, {include_blank: true} %>
+        </div>
+        <div class="field">
+          <%= f.label :region, "地域" %>
+          <%= f.select :region, User.regions.keys, {include_blank: true} %>
+        </div>
+        <div class="field">
           <%= f.label :introduction, "自己紹介", class: "control-label" %>
           <%= f.text_field :introduction, class: "form-control", autofocus: true %>
         </div>

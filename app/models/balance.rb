@@ -3,7 +3,6 @@ class Balance < ApplicationRecord
   # belongs_to :expense_genre
   enum balance: {収入: 0, 支出: 1}
   enum genre: {
-    その他: 0,
     食費: 1,
     住居費: 2,
     日用品: 3,
@@ -18,7 +17,8 @@ class Balance < ApplicationRecord
     賞与: 12,
     副業: 13,
     投資: 14,
-    臨時収入: 15
+    臨時収入: 15,
+    その他: 0
   }
   validates :amount,
     presence: true,
