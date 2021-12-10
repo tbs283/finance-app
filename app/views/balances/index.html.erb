@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-5">
     <div class="offset-md-2"></div>
-    <div class="border p-3 rounded col-lg-8 round">
+    <div class="border pt-3 rounded col-lg-8 round">
       <h5>今月の収支</h5>
       <table class="text-center table table-sm">
         <tr>
@@ -12,56 +12,58 @@
           <td class="text-left fs-15">支出</td>
           <td class="text-right fs-15"><%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
         </tr>
+        <tr>
+          <td class="text-left fs-15">収支</td>
+          <td class="text-right fs-15"><%= @balance_sum.to_s(:delimited, delimiter: ',') %>円</td>
+        </tr>
       </table>
     </div>
   </div>
   <div class="row mt-5">
     <div class="offset-md-2"></div>
-    <div class="border p-3 rounded col-lg-8 round　text-center">
+    <div class="border pt-3 rounded col-lg-8 round　text-center">
+      <h5>今月の収入</h5>
       <table class="table table-sm text-center table-striped">
         <tr>
           <th>日付</th>
           <th>項目</th>
           <th>収入</th>
+          <th>詳細</th>
+          <th>削除</th>
+        </tr>
+        <% @incomes.each do |balances| %>
+          <tr>
+            <td><%= balances.period %></td>
+            <td><%= balances.genre %></td>
+            <td><%= balances.amount.to_s(:delimited, delimiter: ',') %>円</td>
+            <td><%= link_to "詳細", balance_path(balances), class: "btn btn-secondary btn-sm" %></td>
+            <td><%= link_to "削除", balance_path(balances), method: :delete, class: "btn btn-secondary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="offset-md-2"></div>
+    <div class="border pt-3 rounded col-lg-8 round　text-center mb-5">
+      <h5>今月の支出</h5>
+      <table class="table table-sm text-center table-striped">
+        <tr>
+          <th>日付</th>
+          <th>項目</th>
           <th>支出</th>
           <th>詳細</th>
           <th>削除</th>
         </tr>
-        <% @balances.each do |balances| %>
+        <% @expenses.each do |balances| %>
           <tr>
             <td><%= balances.period %></td>
             <td><%= balances.genre %></td>
-            <% if balances.balance = 1 %>
-              <td><%= balances.amount.to_s(:delimited, delimiter: ',') %>円</td>
-              <td></td>
-            <% else %>
-              <td></td>
-              <td><%= balances.amount.to_s(:delimited, delimiter: ',') %>円</td>
-            <% end %>
+            <td><%= balances.amount.to_s(:delimited, delimiter: ',') %>円</td>
             <td><%= link_to "詳細", balance_path(balances), class: "btn btn-secondary btn-sm"  %></td>
             <td><%= link_to "削除", balance_path(balances), method: :delete, class: "btn btn-secondary btn-sm" %></td>
           </tr>
-        <% end %>
-        <% @balances.each do |balances| %>
-          <% if balances.balance = 0 %>
-            <tr>
-              <td><%= balances.period %></td>
-              <td><%= balances.genre %></td>
-              <td><%= balances.amount.to_s(:delimited, delimiter: ',') %>円</td>
-              <td></td>
-              <td><%= link_to "詳細", balance_path(balances), class: "btn btn-secondary btn-sm"  %></td>
-              <td><%= link_to "削除", balance_path(balances), method: :delete, class: "btn btn-secondary btn-sm" %></td>
-            </tr>
-          <% elsif balances.balance = 1 %>
-            <tr>
-              <td><%= balances.period %></td>
-              <td><%= balances.genre %></td>
-              <td></td>
-              <td><%= balances.amount.to_s(:delimited, delimiter: ',') %>円</td>
-              <td><%= link_to "詳細", balance_path(balances), class: "btn btn-secondary btn-sm"  %></td>
-              <td><%= link_to "削除", balance_path(balances), method: :delete, class: "btn btn-secondary btn-sm" %></td>
-            </tr>
-          <% end %>
         <% end %>
       </table>
     </div>

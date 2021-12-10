@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row mt-5">
-        <div class="col-lg-9">
+        <div class="offset-md-2"></div>
+        <div class="border pt-3 rounded col-lg-8 round text-center">
             <%= form_with model:@blog_new, url:blogs_path, local:true do |f| %>
+                <p><%= f.label :title %></p>
                 <div class="field">
-                    <%= f.label :title %><br/>
                     <%= f.text_field :title %>    <%= f.submit '保存' %>
                 </div>
+                <p><%= f.label :content %></p>
                 <div class="field">
-                    <%= f.label :content %><br/>
-                    <%= f.text_area :content, size: "120x20" %>
+                    <%= f.text_area :content, size: "60x20" %>
                 </div>
             <% end %>
         </div>

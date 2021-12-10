@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
     @expenses = @balances.where(balance: 1, period: @month.all_month)#その月の支出
     @income_sum = @incomes.sum(:amount)#その月の収入の合計
     @expense_sum = @expenses.sum(:amount) #その月の支出の合計
-    @balance = @income_sum-@expense_sum #その月の収支
+    @balance = @income_sum #その月の収支
   end
   
   def yeargenre

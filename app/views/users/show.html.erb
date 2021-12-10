@@ -6,7 +6,26 @@
       <h4><%= @user.name %></h4>
       <p><%= @user.introduction %></p>
     </div>
-    <div class="col-lg-1"></div>
+    <div class="col-lg-1">
+      <% if @user.release == "true" %>
+        <h5 class="border-bottom">今月の収支</h3>
+        <table class="text-center table table-sm">
+          <tr>
+            <td class="text-left fs-15">収入</td>
+            <td class="text-right fs-15"><%= @income_sum.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+          <tr>
+            <td class="text-left fs-15">支出</td>
+            <td class="text-right fs-15"><%= @expense_sum.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+          <tr>
+            <td class="text-left fs-15">収支</td>
+            <td class="text-right fs-15"><%= @balance_sum.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+        </table>
+      <% elsif  %>
+      <% end %>
+    </div>
     <div class="col-lg-6">
       <h4><%= @user.name %>のブログ</h4>
       <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">

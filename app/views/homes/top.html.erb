@@ -15,7 +15,7 @@
                 <div class="border-bottom">
                     <%= "残り#{@bfood.to_s(:delimited)}円" %>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: <%= @foodper.to_s %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @foodper.to_s + "%;" %>> <%= @foodper.floor %>% </div>
+                        <div class="progress-bar" role="progressbar" style="width: <%= @foodper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @foodper.to_s + "%;" %>> <%= @foodper.floor %>% </div>
                     </div>
                     <%= "食費#{@food.to_s(:delimited)}円" %> <%= "予算#{@budget.food.to_s(:delimited)}円" %>
                 </div>
@@ -144,9 +144,10 @@
                 <div style="text-align: center">
                    <%= image_tag 'data.jpg', size: '300x200' %>
                 </div>
-                <h5 class="border-bottom"><%= link_to "家計データ", report_path %></h5>
+                <h5 class="border-bottom">家計データ<%# link_to "家計データ", report_path %></h5>
+                <p>今後更新予定</p>
                 <p>自身の家計簿のグラフで表示します。分析して家計の改善に努めましょう。</p>
-                <p><%= link_to "家計データ", report_path, class: "btn btn-secondary btn-sm btn-block" %></p>
+                <p><%# link_to "家計データ", report_path, class: "btn btn-secondary btn-sm btn-block" %></p>
             </content>
         </div>
         <div class="col-lg-4 border mt-1 p-3 rounded">

@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <% @blogs_search.each do |blog| %>
-          <div class="col-lg-3">
+          <div class="border pt-3 rounded col-lg-3 round　text-center">
             <content>
               <h5><%= link_to "#{blog.title}", blog_path(blog.id) %></h5>
               <p><%= blog.content.truncate(30) %></p>
@@ -26,6 +26,25 @@
         <% end %>
       </div>
       <%= paginate @blogs %>
+
+      <div class="row">
+        <h3>最新の投稿</h3>
+        <% @blogs.each do |blog| %>
+          <div class="border pt-3 rounded col-lg-2 round　text-center">
+            <content>
+              <h5><%= link_to "#{blog.title}", blog_path(blog.id) %></h5>
+              <p><%= blog.content.truncate(30) %></p>
+              <p><%= blog.comments.count %>コメント</p>
+              <p>
+                <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %>
+                <%= link_to user_path(blog.user_id) do %>
+                  <%= blog.user.name %>
+                <% end %>
+              </p>
+            </content>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
