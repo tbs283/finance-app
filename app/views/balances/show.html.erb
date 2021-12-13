@@ -1,25 +1,33 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-lg-8">
-      <%= @balance.balance %>の詳細
-      <%= form_with model:@balance, url:balance_path, local:true do |f| %>
-        <!--<div class="field">-->
-        <!--  <%# @balance.period %> → <%# f.date_field :period %>-->
-        <!--</div>-->
-        <div class="field">
-          <%= @balance.amount %> → <%= f.text_field :amount %>
-        </div>
-        <div class="field">
-          <%= @balance.genre %>
-        </div>
-        <div class="field">
-          <%= @balance.description %> → <%= f.text_field :description %>
-        </div>
-        <div class="action">
-          <%= f.submit '保存' %>
-        </div>
+    <% if @balance.errors.any? %>
+      <%= @balance.errors.count %>件のエラーが発生しました
+      <% @balance.errors.full_messages.each do |message| %>
+        <%= message %>
       <% end %>
-      <%= link_to "削除", balance_path(@balance), method: :delete, class:"btn btn-primary btn-sm" %>
+    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2"></div>
+    <div class="col-8 border rounded p-3 m-3">
+      <h5 class="border-bottom">収支の詳細</h5>
+      <%= form_with model:@balance, url:balance_path, local:true do |f| %>
+      <p>
+        <%= f.label :period, "日付" %>
+        <%= f.date_field :period %>
+      </p>
+      <p>
+        <%= f.label :amount, "金額" %>
+        <%= f.number_field :amount %>円
+      </p>
+      <p>
+        <%= f.label :genre, "項目" %>
+        <%= f.select :genre, Balance.genres.keys, {include_blank: true} %>
+      </p>
+      <p>
+        <%= f.label :description, "説明" %>
+        <%= f.text_field :description, size: "80x2" %>
+      </p>
+      <p class="text-center"><%= f.submit '変更' %></p>
+      <% end %>
     </div>
   </div>
 </div>
