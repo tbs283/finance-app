@@ -5,6 +5,7 @@
       <h2 class="text-center">ユーザー情報編集</h2>
       <%= form_with model: @user, url:user_path(current_user), method: :patch, local:true do |f| %>
         <div class="field" class="form-group">
+          <%= attachment_image_tag @user, :image, size: "100x100", class: "rounded-circle" %>
           <%= f.label :image, "ユーザアイコン", class: "control-label" %>:
           <%= f.attachment_field :image %>
         </div>
@@ -25,7 +26,7 @@
           <%= f.select :age, User.ages.keys, {include_blank: true} %>
         </div>
         <div class="field">
-          <%= f.label :region, "地域" %>
+          <%= f.label :region, "都道府県" %>
           <%= f.select :region, User.regions.keys, {include_blank: true} %>
         </div>
         <div class="field">

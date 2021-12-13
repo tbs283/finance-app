@@ -4,14 +4,14 @@
           <h3>予算設定</h3>
           <%= form_with model:@budget_new, url:budgets_path, local:true do |f| %>
             <li><%= f.label :food, "食費" %>　　<%= f.number_field :food%>円</li>
-            <li><%= f.label :house, "住居費" %>　　<%= f.number_field :house %>円</li>  
-            <li><%= f.label :daily, "日用品" %>　　<%= f.number_field :daily %>円</li> 
-            <li><%= f.label :utility, "水道光熱費" %>　　<%= f.number_field :utility %>円</li> 
-            <li><%= f.label :cloth, "衣類" %>　　<%= f.number_field :cloth %>円</li> 
-            <li><%= f.label :hobby, "趣味・娯楽" %>　　<%= f.number_field :hobby %>円</li>  
-            <li><%= f.label :liberal_art, "教育・教養" %>　　<%= f.number_field :liberal_art %>円</li>  
-            <li><%= f.label :communicate, "通信費" %>　　<%= f.number_field :communicate %>円</li> 
-            <li><%= f.label :medical, "健康・医療" %>　　<%= f.number_field :medical %>円</li> 
+            <li><%= f.label :house, "住居費" %>　　<%= f.number_field :house %>円</li>
+            <li><%= f.label :daily, "日用品" %>　　<%= f.number_field :daily %>円</li>
+            <li><%= f.label :utility, "水道光熱費" %>　　<%= f.number_field :utility %>円</li>
+            <li><%= f.label :cloth, "衣類" %>　　<%= f.number_field :cloth %>円</li>
+            <li><%= f.label :hobby, "趣味・娯楽" %>　　<%= f.number_field :hobby %>円</li>
+            <li><%= f.label :liberal_art, "教育・教養" %>　　<%= f.number_field :liberal_art %>円</li>
+            <li><%= f.label :communicate, "通信費" %>　　<%= f.number_field :communicate %>円</li>
+            <li><%= f.label :medical, "健康・医療" %>　　<%= f.number_field :medical %>円</li>
             <li><%= f.label :other, "その他" %>　　<%= f.number_field :other %>円</li>
             <%= f.submit '新規登録' %>
           <% end %>

@@ -18,7 +18,7 @@ class Balance < ApplicationRecord
     副業: 13,
     投資: 14,
     臨時収入: 15,
-    その他: 0
+    その他: 16
   }
   validates :amount,
     presence: true,

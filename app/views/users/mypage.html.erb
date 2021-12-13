@@ -38,14 +38,31 @@
         </div>
       </div>
     </div>
+
     <div class="col-lg-7">
       <div class="border rounded m-3 p-3">
         <h5 class="border-bottom">ユーザー情報</h3>
+        <div><%= link_to "編集する", edit_user_path(current_user), class: "btn btn-secondary btn-sm" %></div>
         <%= attachment_image_tag @user, :image, size: "100x100", class: "rounded-circle" %>
-        <%= "ユーザー名　#{@user.name}" %>
-        <%= "メールアドレス　#{@user.email}" %>
-        <%= "自己紹介#{@user.introduction}" %>
-        <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-secondary btn-sm" %>
+        <table>
+          <tr>
+            <th>ユーザーネーム</th>
+            <td><%= @user.name %></td>
+            <th>メールアドレス</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td><%= @user.sex %></td>
+            <th>年齢層</th>
+            <td><%= @user.age %></td>
+          </tr>
+          <tr>
+            <th>都道府県</th>
+            <td><%= @user.region %></td>
+          </tr>
+        </table>
+        <%= @user.introduction %>
       </div>
       <div class="border rounded m-3 p-3">
         <h5 class="border-bottom">自身の投稿</h3>

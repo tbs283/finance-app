@@ -17,7 +17,7 @@ class HomesController < ApplicationController
       @expense_all_sum = @expenses_all.sum(:amount)#支出全体の合計
       @saving = @income_all_sum-@expense_all_sum#貯金額
 
-      @budget = Budget.find_by(user_id: current_user.id)
+      @budget = Budget.where(user_id: current_user.id).last
       @food = @expenses.where(genre: 1, period: @month.all_month).sum(:amount) #当月の食費
       @house = @expenses.where(genre: 2, period: @month.all_month).sum(:amount) #当月の住居費
       @daily = @expenses.where(genre: 3, period: @month.all_month).sum(:amount) #当月の日用品
@@ -27,7 +27,7 @@ class HomesController < ApplicationController
       @liberal_art = @expenses.where(genre: 7, period: @month.all_month).sum(:amount) #当月の教養
       @communicate = @expenses.where(genre: 8, period: @month.all_month).sum(:amount) #当月の通信費
       @medical = @expenses.where(genre: 9, period: @month.all_month).sum(:amount) #当月の医療費
-      @other = @expenses.where(genre: 10, period: @month.all_month).sum(:amount) #当月のその他費用
+      @other = @expenses.where(genre: 16, period: @month.all_month).sum(:amount) #当月のその他費用
       #予算と支出の差額
       if @budget.present?
         @bfood = @budget.food-@food
@@ -40,7 +40,16 @@ class HomesController < ApplicationController
         @bcommunicate= @budget.communicate-@communicate
         @bmedical = @budget.medical-@medical
         @bother = @budget.other-@other
-        @foodper = @bfood/@budget.food*100
+        @foodper = @food.to_f/@budget.food*100
+        @houseper = @house.to_f/@budget.house*100
+        @dailyper = @daily.to_f/@budget.daily*100
+        @utilityper = @utility.to_f/@budget.utility*100
+        @clothper = @cloth.to_f/@budget.cloth*100
+        @hobbyper = @hobby.to_f/@budget.hobby*100
+        @liberal_artper = @liberal_art.to_f/@budget.liberal_art*100
+        @communicateper = @communicate.to_f/@budget.communicate*100
+        @medicalper = @medical.to_f/@budget.medical*100
+        @otherper = @other.to_f/@budget.other*100
       end
     else
     end
