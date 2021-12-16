@@ -9,78 +9,97 @@
                 先月の総支出
             </div>
         </div>
-        <div class="col-lg-6 border mt-3 p-3 rounded">
-            <div class="border-bottom">
-                <%= "残り#{@bfood.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @foodper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @foodper.to_s + "%;" %>> <%= @foodper.floor %>% </div>
+        <% if @budget.present? %>
+            <div class="col-lg-6 border mt-3 p-3 rounded mb-5">
+                <div class="border-bottom">
+                    <%= "残り#{@bfood.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @foodper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @foodper.to_s + "%;" %>> <%= @foodper.floor %>% </div>
+                    </div>
+                    <%= "食費#{@food.to_s(:delimited)}円" %><%= "予算#{@budget.food.to_s(:delimited)}円" %>
                 </div>
-                <%= "食費#{@food.to_s(:delimited)}円" %><%= "予算#{@budget.food.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bhouse.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @houseper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @houseper.to_s + "%;" %>> <%= @houseper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bhouse.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @houseper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @houseper.to_s + "%;" %>> <%= @houseper.floor %>% </div>
+                    </div>
+                    <%= "住居費#{@house.to_s(:delimited)}円" %><%= "予算#{@budget.house.to_s(:delimited)}円" %>
                 </div>
-                <%= "住居費#{@house.to_s(:delimited)}円" %><%= "予算#{@budget.house.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bdaily.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @dailyper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @dailyper.to_s + "%;" %>> <%= @dailyper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bdaily.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @dailyper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @dailyper.to_s + "%;" %>> <%= @dailyper.floor %>% </div>
+                    </div>
+                    <%= "日用品#{@daily.to_s(:delimited)}円" %><%= "予算#{@budget.daily.to_s(:delimited)}円" %>
                 </div>
-                <%= "日用品#{@daily.to_s(:delimited)}円" %><%= "予算#{@budget.daily.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@butility.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @utilityper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @utilityper.to_s + "%;" %>> <%= @utilityper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@butility.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @utilityper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @utilityper.to_s + "%;" %>> <%= @utilityper.floor %>% </div>
+                    </div>
+                    <%= "水道光熱費#{@utility.to_s(:delimited)}円" %><%= "予算#{@budget.utility.to_s(:delimited)}円" %>
                 </div>
-                <%= "水道光熱費#{@utility.to_s(:delimited)}円" %><%= "予算#{@budget.utility.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bcloth.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @clothper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @clothper.to_s + "%;" %>> <%= @clothper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bcloth.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @clothper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @clothper.to_s + "%;" %>> <%= @clothper.floor %>% </div>
+                    </div>
+                    <%= "衣類#{@cloth.to_s(:delimited)}円" %><%= "予算#{@budget.cloth.to_s(:delimited)}円" %>
                 </div>
-                <%= "衣類#{@cloth.to_s(:delimited)}円" %><%= "予算#{@budget.cloth.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bhobby.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @hobbyper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @hobbyper.to_s + "%;" %>> <%= @hobbyper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bhobby.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @hobbyper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @hobbyper.to_s + "%;" %>> <%= @hobbyper.floor %>% </div>
+                    </div>
+                    <%= "趣味・娯楽#{@hobby.to_s(:delimited)}円" %><%= "予算#{@budget.hobby.to_s(:delimited)}円" %>
                 </div>
-                <%= "趣味・娯楽#{@hobby.to_s(:delimited)}円" %><%= "予算#{@budget.hobby.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bliberal_art.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @liberal_artper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @liberal_artper.to_s + "%;" %>> <%= @liberal_artper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bliberal_art.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @liberal_artper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @liberal_artper.to_s + "%;" %>> <%= @liberal_artper.floor %>% </div>
+                    </div>
+                    <%= "教育・教養#{@liberal_art.to_s(:delimited)}円" %><%= "予算#{@budget.liberal_art.to_s(:delimited)}円" %>
                 </div>
-                <%= "教育・教養#{@liberal_art.to_s(:delimited)}円" %><%= "予算#{@budget.liberal_art.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bcommunicate.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @communicateper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @communicateper.to_s + "%;" %>> <%= @communicateper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bcommunicate.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @communicateper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @communicateper.to_s + "%;" %>> <%= @communicateper.floor %>% </div>
+                    </div>
+                    <%= "通信費#{@communicate.to_s(:delimited)}円" %><%= "予算#{@budget.communicate.to_s(:delimited)}円" %>
                 </div>
-                <%= "通信費#{@communicate.to_s(:delimited)}円" %><%= "予算#{@budget.communicate.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bmedical.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @medicalper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @medicalper.to_s + "%;" %>> <%= @medicalper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bmedical.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @medicalper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @medicalper.to_s + "%;" %>> <%= @medicalper.floor %>% </div>
+                    </div>
+                    <%= "健康・医療#{@medical.to_s(:delimited)}円" %><%= "予算#{@budget.medical.to_s(:delimited)}円" %>
                 </div>
-                <%= "健康・医療#{@medical.to_s(:delimited)}円" %><%= "予算#{@budget.medical.to_s(:delimited)}円" %>
-            </div>
-            <div class="border-bottom">
-                <%= "残り#{@bother.to_s(:delimited)}円" %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: <%= @otherper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @otherper.to_s + "%;" %>> <%= @otherper.floor %>% </div>
+                <div class="border-bottom">
+                    <%= "残り#{@bother.to_s(:delimited)}円" %>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: <%= @otherper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @otherper.to_s + "%;" %>> <%= @otherper.floor %>% </div>
+                    </div>
+                    <%= "その他#{@other.to_s(:delimited)}円" %><%= "予算#{@budget.other.to_s(:delimited)}円" %>
                 </div>
-                <%= "その他#{@other.to_s(:delimited)}円" %><%= "予算#{@budget.other.to_s(:delimited)}円" %>
+                <div><%= link_to "削除", budget_path(@budget), method: :delete %></div>
             </div>
-            <div><%= link_to "削除", budget_path(@budget), method: :delete %></div>
-        </div>
+        <% else %>
+            <div class="col-lg-6 border mt-3 p-3 rounded mb-5">
+                <h3>予算設定</h3>
+                <%= form_with model:@budget_new, url:budgets_path, local:true do |f| %>
+                    <li><%= f.label :food, "食費" %>　　<%= f.number_field :food %>円</li>
+                    <li><%= f.label :house, "住居費" %>　　<%= f.number_field :house %>円</li>
+                    <li><%= f.label :daily, "日用品" %>　　<%= f.number_field :daily %>円</li>
+                    <li><%= f.label :utility, "水道光熱費" %>　　<%= f.number_field :utility %>円</li>
+                    <li><%= f.label :cloth, "衣類" %>　　<%= f.number_field :cloth %>円</li>
+                    <li><%= f.label :hobby, "趣味・娯楽" %>　　<%= f.number_field :hobby %>円</li>
+                    <li><%= f.label :liberal_art, "教育・教養" %>　　<%= f.number_field :liberal_art %>円</li>
+                    <li><%= f.label :communicate, "通信費" %>　　<%= f.number_field :communicate %>円</li>
+                    <li><%= f.label :medical, "健康・医療" %>　　<%= f.number_field :medical %>円</li>
+                    <li><%= f.label :other, "その他" %>　　<%= f.number_field :other %>円</li>
+                    <%= f.submit '新規登録' %>
+                <% end %>
+            </div>
+        <% end %>
     </div>
 </div>

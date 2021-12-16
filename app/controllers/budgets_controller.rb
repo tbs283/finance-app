@@ -4,7 +4,7 @@ class BudgetsController < ApplicationController
     @balances = current_user.balances
     @expenses = @balances.where(balance: 1, period: @month.all_month)#その月の支出
     @expense_sum = @expenses.sum(:amount) #その月の支出の合計
-
+    @budget_new = Budget.new #空のモデル
     @budget = Budget.where(user_id: current_user.id).last
     @food = @expenses.where(genre: 1, period: @month.all_month).sum(:amount) #当月の食費
     @house = @expenses.where(genre: 2, period: @month.all_month).sum(:amount) #当月の住居費
@@ -17,26 +17,28 @@ class BudgetsController < ApplicationController
     @medical = @expenses.where(genre: 9, period: @month.all_month).sum(:amount) #当月の医療費
     @other = @expenses.where(genre: 16, period: @month.all_month).sum(:amount) #当月のその他費用
     #予算と支出の差額
-    @bfood = @budget.food-@food
-    @bhouse = @budget.house-@house
-    @bdaily = @budget.daily-@daily
-    @butility = @budget.utility-@utility
-    @bcloth= @budget.cloth-@cloth
-    @bhobby= @budget.hobby-@hobby
-    @bliberal_art = @budget.liberal_art-@liberal_art
-    @bcommunicate= @budget.communicate-@communicate
-    @bmedical = @budget.medical-@medical
-    @bother = @budget.other-@other
-    @foodper = @food.to_f/@budget.food*100
-    @houseper = @house.to_f/@budget.house*100
-    @dailyper = @daily.to_f/@budget.daily*100
-    @utilityper = @utility.to_f/@budget.utility*100
-    @clothper = @cloth.to_f/@budget.cloth*100
-    @hobbyper = @hobby.to_f/@budget.hobby*100
-    @liberal_artper = @liberal_art.to_f/@budget.liberal_art*100
-    @communicateper = @communicate.to_f/@budget.communicate*100
-    @medicalper = @medical.to_f/@budget.medical*100
-    @otherper = @other.to_f/@budget.other*100
+    if @budget.present?
+      @bfood = @budget.food-@food
+      @bhouse = @budget.house-@house
+      @bdaily = @budget.daily-@daily
+      @butility = @budget.utility-@utility
+      @bcloth= @budget.cloth-@cloth
+      @bhobby= @budget.hobby-@hobby
+      @bliberal_art = @budget.liberal_art-@liberal_art
+      @bcommunicate= @budget.communicate-@communicate
+      @bmedical = @budget.medical-@medical
+      @bother = @budget.other-@other
+      @foodper = @food.to_f/@budget.food*100
+      @houseper = @house.to_f/@budget.house*100
+      @dailyper = @daily.to_f/@budget.daily*100
+      @utilityper = @utility.to_f/@budget.utility*100
+      @clothper = @cloth.to_f/@budget.cloth*100
+      @hobbyper = @hobby.to_f/@budget.hobby*100
+      @liberal_artper = @liberal_art.to_f/@budget.liberal_art*100
+      @communicateper = @communicate.to_f/@budget.communicate*100
+      @medicalper = @medical.to_f/@budget.medical*100
+      @otherper = @other.to_f/@budget.other*100
+    end
   end
 
   def new
@@ -56,7 +58,7 @@ class BudgetsController < ApplicationController
   def destroy
     budget = Budget.find_by(user_id: current_user.id)
     budget.destroy
-    redirect_to new_budget_path
+    redirect_to budgets_path
   end
 
   private

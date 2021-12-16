@@ -3,7 +3,7 @@
         <div class="col-lg-9">
           <h3>予算設定</h3>
           <%= form_with model:@budget_new, url:budgets_path, local:true do |f| %>
-            <li><%= f.label :food, "食費" %>　　<%= f.number_field :food%>円</li>
+            <li><%= f.label :food, "食費" %>　　<%= f.number_field :food %>円</li>
             <li><%= f.label :house, "住居費" %>　　<%= f.number_field :house %>円</li>
             <li><%= f.label :daily, "日用品" %>　　<%= f.number_field :daily %>円</li>
             <li><%= f.label :utility, "水道光熱費" %>　　<%= f.number_field :utility %>円</li>
