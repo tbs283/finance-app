@@ -18,6 +18,13 @@
             <td class="text-right fs-15"><%= @balance_sum.to_s(:delimited, delimiter: ',') %>円</td>
           </tr>
         </table>
+        <h5 class="border-bottom">貯金</h3>
+        <table class="text-center table table-sm">
+          <tr>
+            <td class="text-left fs-15"></td>
+            <td class="text-right fs-15"><%= @saving.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+        </table>
         <div class="field">
           <%= form_with model: @user, url:user_path(current_user), method: :patch, local:true do |f| %>
             <div class="done">

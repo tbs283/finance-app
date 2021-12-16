@@ -22,6 +22,12 @@ class UsersController < ApplicationController
     @income_sum = @incomes.sum(:amount)#その月の収入の合計
     @expense_sum = @expenses.sum(:amount) #その月の支出の合計
     @balance_sum = @income_sum - @expense_sum #その月の収支
+    
+    @incomes_all = @balance.where(balance: 0)#収入全体
+    @expenses_all = @balance.where(balance: 1)#支出全体
+    @income_all_sum = @incomes_all.sum(:amount)#収入全体の合計
+    @expense_all_sum = @expenses_all.sum(:amount)#支出全体の合計
+    @saving = @income_all_sum-@expense_all_sum#貯金額
   end
 
   def create

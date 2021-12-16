@@ -11,6 +11,7 @@
         </div>
         <% if @budget.present? %>
             <div class="col-lg-6 border mt-3 p-3 rounded mb-5">
+                <div class="border-bottom"><%= link_to "再設定", budget_path(@budget), method: :delete, class: "btn btn-secondary btn-sm btn-block" %></div>
                 <div class="border-bottom">
                     <%= "残り#{@bfood.to_s(:delimited)}円" %>
                     <div class="progress">
@@ -74,14 +75,13 @@
                     </div>
                     <%= "健康・医療#{@medical.to_s(:delimited)}円" %><%= "予算#{@budget.medical.to_s(:delimited)}円" %>
                 </div>
-                <div class="border-bottom">
+                <div>
                     <%= "残り#{@bother.to_s(:delimited)}円" %>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: <%= @otherper.to_i %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=<%= "width:" + @otherper.to_s + "%;" %>> <%= @otherper.floor %>% </div>
                     </div>
                     <%= "その他#{@other.to_s(:delimited)}円" %><%= "予算#{@budget.other.to_s(:delimited)}円" %>
                 </div>
-                <div><%= link_to "削除", budget_path(@budget), method: :delete %></div>
             </div>
         <% else %>
             <div class="col-lg-6 border mt-3 p-3 rounded mb-5">

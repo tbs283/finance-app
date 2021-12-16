@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="offset-md-2"></div>
     <div class="border pt-3 rounded col-lg-8 round">
-      <h5>今月の収支</h5>
+      <h5><%= link_to "前の月のリンク",balances_path(month:@month.prev_month) %>今月の収支<%= link_to "次の月のリンク",balances_path(month:@month.next_month) %></h5>
       <table class="text-center table table-sm">
         <tr>
           <td class="text-left fs-15">収入</td>
