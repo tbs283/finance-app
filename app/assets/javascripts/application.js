@@ -22,9 +22,3 @@
 
 //= require Chart.bundle
 //= require chartkick
-
-$(function() {
-    $('.a').slick({
-        dots: true,
-    });
-});

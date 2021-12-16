@@ -1,24 +1,24 @@
 <div class="container">
-  <div class="row mt-5">
-    <h3>年間収支推移</h3>
-    <h4><%= @year %>年</h4>　<!--指定する年を表示--></br>
-    <div><%= line_chart @balance.group_by_month(:period).sum(:amount), xtitle: "年月", ytitle: "収支", width: "600px", height: "200px" %></div>
+  <div class="row mt-3 p-3 border mb-3">
+    <div><%= line_chart @balance.group_by_year(:period).sum(:amount), xtitle: "年月", ytitle: "収支", width: "600px", height: "200px" %></div>
+    <div><%= link_to "前の年",yeargenre_path(year:@year.prev_year) %>/<%= link_to "次の年",yeargenre_path(year:@year.next_year) %></div>
   </div>
-  <div class="row mt-3">
-    <div class="col-lg-9">
-      <%= link_to "前の年",yeargenre_path(year:@year.prev_year) %><%= link_to "次の年",yeargenre_path(year:@year.next_year) %>
-      <p>１月</p>
-      <p>２月</p>
-      <p>３月</p>
-      <p>４月</p>
-      <p>５月</p>
-      <p>６月</p>
-      <p>７月</p>
-      <p>８月</p>
-      <p>９月</p>
-      <p>10月</p>
-      <p>11月</p>
-      <p>12月</p>
+  <div class="row border mt-3">
+    <h3>年間収支推移</h3>
+    <div class="col-lg-6">
+      <div class="border-bottom"><p>1月</p></div>
+      <div class="border-bottom"><p>2月</p></div>
+      <div class="border-bottom"><p>3月</p></div>
+      <div class="border-bottom"><p>4月</p></div>
+      <div class="border-bottom"><p>5月</p></div>
+      <div class="border-bottom"><p>6月</p></div>
+    </div>
+    <div class="col-lg-6">
+      <div class="border-bottom"><p>7月</p></div>
+      <div class="border-bottom"><p>8月</p></div>
+      <div class="border-bottom"><p>9月</p></div>
+      <div class="border-bottom"><p>10月</p></div>
+      <div class="border-bottom"><p>11月</p></div>
+      <div class="border-bottom"><p>12月</p></div>
     </div>
   </div>
-</div>

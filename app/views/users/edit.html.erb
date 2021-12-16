@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="offset-md-2"></div>
+    <div class="col-8"><%= link_to "ホーム",root_path %>/<%= link_to "マイページ",mypage_path %>/ユーザー編集</div>
+  </div>
+  <div class="row">
+    <div class="offset-md-2"></div>
     <div class="col-8 border rounded p-3 m-3">
       <h2 class="text-center">ユーザー情報編集</h2>
       <%= form_with model: @user, url:user_path(current_user), method: :patch, local:true do |f| %>

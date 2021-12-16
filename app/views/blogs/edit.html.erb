@@ -1,6 +1,12 @@
 <div class="container">
     <div class="row mt-5">
         <div class="offset-md-2"></div>
+        <div class="col-lg-8">
+            <%= link_to "ホーム",root_path %>/<%= link_to "一覧", search_blogs_path %>/<%= link_to "ブログ", blog_path(@blog) %>/編集
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="offset-md-2"></div>
         <div class="border pt-3 rounded col-lg-8 round text-center">
             <%= form_with model:@blog, url:blog_path, local:true do |f| %>
                 <p><%= f.label :title %></p>

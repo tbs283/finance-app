@@ -7,6 +7,12 @@
 <div class="container">
   <div class="row">
     <div class="offset-md-2"></div>
+    <div class="col-8">
+      <%= link_to "ホーム",root_path %>/<%= link_to "家計簿", balances_path %>/詳細
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-md-2"></div>
     <div class="col-8 border rounded p-3 m-3">
       <h5 class="border-bottom">収支の詳細</h5>
       <%= form_with model:@balance, url:balance_path, local:true do |f| %>
