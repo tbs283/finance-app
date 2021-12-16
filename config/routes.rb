@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "cashflow" => 'reports#cashflow'
   get "mypage" => 'users#mypage'
   get "register" => 'balances#register'
-  resources :budgets, only: [:new, :create, :edit, :update, :index, :destroy]
+  resources :budgets, only: [:create, :update, :index, :destroy]
   resources :blogs, only: [:new, :create, :edit, :update, :show, :destroy] do
     get :search, on: :collection
     resource :favorites, only: [:create, :destroy]

@@ -1,16 +1,15 @@
 <div class="container">
   <div class="row mt-5 mb-5">
-    <div class="col-lg-12">
-      <h3>ブログ</h3>
+    <div class="col-lg-9">
       <div>
         <%= form_with url: search_blogs_path, method: :get, local: true do |f| %>
           <%= f.text_field :title %>
           <%= f.submit :search %>
         <% end %>
       </div>
-      <div class="row">
+      <div>
         <% @blogs_search.each do |blog| %>
-          <div class="border pt-3 rounded col-lg-3 round　text-center">
+          <div class="border pt-3 rounded round　text-center">
             <content>
               <h5><%= link_to "#{blog.title}", blog_path(blog.id) %></h5>
               <p><%= blog.content.truncate(30) %></p>
@@ -26,25 +25,24 @@
         <% end %>
       </div>
       <%= paginate @blogs %>
-
-      <div class="row">
-        <h3>最新の投稿</h3>
-        <% @blogs.each do |blog| %>
-          <div class="border pt-3 rounded col-lg-2 round　text-center">
-            <content>
-              <h5><%= link_to "#{blog.title}", blog_path(blog.id) %></h5>
-              <p><%= blog.content.truncate(30) %></p>
-              <p><%= blog.comments.count %>コメント</p>
-              <p>
-                <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %>
-                <%= link_to user_path(blog.user_id) do %>
-                  <%= blog.user.name %>
-                <% end %>
-              </p>
-            </content>
-          </div>
-        <% end %>
-      </div>
+    </div>
+    <div class="col-lg-3">
+      <h3>最新の投稿</h3>
+      <% @blogs.each do |blog| %>
+        <div class="border pt-3 rounded round　text-center">
+          <content>
+            <h5><%= link_to "#{blog.title}", blog_path(blog.id) %></h5>
+            <p><%= blog.content.truncate(30) %></p>
+            <p><%= blog.comments.count %>コメント</p>
+            <p>
+              <%= attachment_image_tag blog.user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %>
+              <%= link_to user_path(blog.user_id) do %>
+                <%= blog.user.name %>
+              <% end %>
+            </p>
+          </content>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
