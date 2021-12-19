@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-4"></div>
+    <div class="col-lg-4 border rounded m-3 p-3">
+      <h5 class="border-bottom">フォローユーザー</h5>
+      <% @user.following.each do |user| %>
+        <table>
+          <tr>
+            <th></th>
+            <th>ユーザーネーム</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td><%= attachment_image_tag user, :image, size: "30x30", class: "rounded-circle" %></td>
+            <td><%= user.name %></td>
+            <td></td>
+            <td><%= link_to '詳細', user_path(user) %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
