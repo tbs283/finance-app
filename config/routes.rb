@@ -19,13 +19,14 @@ Rails.application.routes.draw do
   resources :balances, :only => [:edit, :create, :index, :show, :update, :destroy] do
   end
   resources :users, :only => [:show, :edit, :update] do
+    get :search, on: :collection
     member do
         get :following, :followers
     end
   end
   resources :relationships, only: [:create, :destroy]
-  
-  
+
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

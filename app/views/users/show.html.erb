@@ -22,8 +22,8 @@
           <%= render "follow_form" %>
         </div>
       </div>
-      <div class="border mt-3 p-3 rounded">
-        <% if @userb %>
+      <% if @user_release == true %>
+        <div class="border mt-3 p-3 rounded">
           <h5 class="border-bottom">今月の収支</h3>
           <table class="text-center table table-sm">
             <tr>
@@ -39,34 +39,42 @@
               <td class="text-right fs-15"><%= @balance_sum.to_s(:delimited, delimiter: ',') %>円</td>
             </tr>
           </table>
-        <% else %>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+      <% end %>
     </div>
-    <div class="col-lg-8 border mt-3 p-3 rounded mb-5">
-      <h4><%= @user.name %>のブログ</h4>
-      <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>コンテンツ</th>
-            <th>作成日</th>
-          </tr>
-        </thead>
-        <% @user.blogs.each do |blog| %>
-          <tbody>
+    <div class="col-lg-8">
+      <div class="border mt-3 p-3 rounded mb-5">
+        <h4><%= @user.name %>のブログ</h4>
+        <table class="table table-sm text-center table-striped table-hover mt-3 mb-3">
+          <thead>
             <tr>
-              <td>
-                <%= link_to blog_path(blog.id) do %>
-                  <%= blog.title %>
-                <% end %>
-              </td>
-              <td><%= blog.content %></td>
-              <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
+              <th>タイトル</th>
+              <th>コンテンツ</th>
+              <th>作成日</th>
             </tr>
-          </tbody>
-        <% end %>
-      </table>
+          </thead>
+          <% @user.blogs.each do |blog| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to blog_path(blog.id) do %>
+                    <%= blog.title %>
+                  <% end %>
+                </td>
+                <td><%= blog.content.truncate(30) %></td>
+                <td><%= blog.created_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+      <% if @user_release == true %>
+        <div class="border mt-3 p-3 rounded mb-5">
+          
+        </div>
+      <% else %>
+      <% end %>
     </div>
     <div class="col-lg-1"></div>
   </div>

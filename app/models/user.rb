@@ -11,13 +11,29 @@ class User < ApplicationRecord
   has_many :balances, dependent: :destroy
   has_many :goals, dependent: :destroy
   has_many :budgets, dependent: :destroy
-  
+
+  # 複数条件での検索
+  # https://qiita.com/poire_prog/items/48f569cdfc8000e18896 参考
+  scope :search, -> (search_params) do      #scopeでsearchメソッドを定義。(search_params)は引数
+    return if search_params.blank?      #検索フォームに値がなければ以下の手順は行わない
+
+    name_search(search_params[:name])
+      .sex(search_params[:sex])
+      .age(search_params[:age])
+      .region(search_params[:region])   #下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
+  end
+
+  scope :name_search, -> {where('name LIKE ?', "%#{params[:name]}%") if name.present?}
+  scope :sex, -> {where("sex = ?", params[:sex]) if sex.present?}
+  scope :age, -> {where("age = ?", params[:age]) if age.present?}
+  scope :region, -> {where("region = ?", params[:region]) if region.present?}
+
   #フォロー機能
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
   has_many :following, through: :following_relationships
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
-  
+
   #フォローしているかを確認するメソッド
   def following?(user)
     following_relationships.find_by(following_id: user.id)
@@ -32,8 +48,8 @@ class User < ApplicationRecord
   def unfollow(user)
     following_relationships.find_by(following_id: user.id).destroy
   end
-  
-  
+
+
   attachment :image
   validates :name, presence: true
 

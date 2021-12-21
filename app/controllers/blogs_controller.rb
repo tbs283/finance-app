@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
   def new
     @blog_new = Blog.new
   end
-  
+
   def create
     @blog_new = Blog.new(blog_params)
     @blog_new.user_id = current_user.id
@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
   def edit
     @blog = Blog.find(params[:id])
   end
-  
+
   def update
     @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
@@ -30,13 +30,13 @@ class BlogsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     blog = Blog.find(params[:id])
     blog.destroy
     redirect_to blogs_path
   end
-  
+
   def search
     @blogs = Blog.all.order(created_at: :desc).page(params[:page]).per(15)
     if params[:title].present?
@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
       @blogs_search = Blog.none
     end
   end
-  
+
   private
   def blog_params
     params.require(:blog).permit(:title, :content, :user_id)

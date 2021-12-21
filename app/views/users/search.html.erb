@@ -1,0 +1,60 @@
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-lg-9">-->
+<!--      <%# link_to "ホーム",root_path %>/一覧-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row mt-5 mb-5">-->
+<!--    <div class="col-lg-9">-->
+<!--      <div>-->
+<!--        <%# form_with url: search_users_path, method: :get, local: true do |f| %>-->
+<!--          <%# f.text_field :name %>-->
+<!--          <%# f.select :sex, User.sexes.keys, {include_blank: true} %>-->
+          <%# f.select :age, User.ages.keys, {include_blank: true} %>
+          <%# f.select :region, User.regions.keys, {include_blank: true} %>
+<!--          <%# f.submit :search %>-->
+<!--        <%# end %>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <%# @users_search.each do |user| %>-->
+<!--          <div class="border pt-3 rounded round　text-center">-->
+<!--            <content>-->
+<!--              <h5><%# link_to "#{user.name}", user_path(user.id) %></h5>-->
+<!--              <p>-->
+<!--                <%# attachment_image_tag user, :image, size: "42x28", format: 'png', fallback: "no_image.jpg", class: "rounded-circle" %>-->
+<!--              </p>-->
+<!--            </content>-->
+<!--          </div>-->
+<!--        <%# end %>-->
+<!--      </div>-->
+<!--      <%# paginate @users %>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<%= form_with(scope: :search, url: search_users_path, method: :get, local: true) do |f| %>
+
+  <%= f.label :name, "ナマエ" %>
+  <%= f.text_field :name, value: @search_params[:name] %>
+
+  <%= f.label :sex, "性別" %>
+  <%= f.text_field :sex, value: @search_params[:sex] %>
+
+  <%= f.label :region, "地域" %>
+  <%= f.text_field :region, value: @search_params[:region] %>
+
+  <%= f.label :age, "年齢" %>
+  <%= f.text_field :age, value: @search_params[:age] %>
+
+  <%= submit_tag '検索', class: "button" %>
+<% end %>
+
+<% unless @search_params.blank? %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.age %></td>
+      <td><%= user.sex %></td>
+      <td><%= user.region %></td>
+    </tr>
+  <% end %>
+<% end %>
