@@ -45,7 +45,7 @@
   <%= f.label :age, "年齢" %>
   <%= f.text_field :age, value: @search_params[:age] %>
 
-  <%= submit_tag '検索', class: "button" %>
+  <%= f.submit :search %>
 <% end %>
 
 <% unless @search_params.blank? %>

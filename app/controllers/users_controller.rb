@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @income_sum = @incomes.sum(:amount)#その月の収入の合計
     @expense_sum = @expenses.sum(:amount) #その月の支出の合計
     @balance_sum = @income_sum - @expense_sum #その月の収支
-    
+
     #予算
     @budget = Budget.where(user_id: @user.id).last
     @food = @expenses.where(genre: 1, period: @month.all_month).sum(:amount) #当月の食費
@@ -82,10 +82,11 @@ class UsersController < ApplicationController
     redirect_to mypage_path
   end
 
-  def search
-    @search_params = user_search_params  #検索結果の画面で、フォームに検索した値を表示するために、paramsの値をビューで使えるようにする
-    @users = User.search(@search_params) #Reservationモデルのsearchを呼び出し、引数としてparamsを渡している。
-  end
+  # def search
+  #   @search_params = user_search_params  #検索結果の画面で、フォームに検索した値を表示するために、paramsの値をビューで使えるようにする
+
+  #   @users = User.search(@search_params) #Reservationモデルのsearchを呼び出し、引数としてparamsを渡している。
+  # end
 
   def following
     #@userがフォローしているユーザー
@@ -105,9 +106,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :name, :image, :introduction, :release, :sex, :region, :age)
   end
+  # def user_search_params
+  #   params.fetch(:search, {}).permit(:name, :sex, :age, :region)
+  #   #fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+  #   #ここでの:searchには、フォームから送られてくるparamsの値が入っている
+  # end
   def user_search_params
-    params.fetch(:search, {}).permit(:name, :sex, :age, :region)
-    #fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
-    #ここでの:searchには、フォームから送られてくるparamsの値が入っている
+    strong(:search).permit(:name, :gender, :age, :region)
   end
 end

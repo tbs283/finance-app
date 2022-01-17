@@ -14,19 +14,19 @@ class User < ApplicationRecord
 
   # 複数条件での検索
   # https://qiita.com/poire_prog/items/48f569cdfc8000e18896 参考
-  scope :search, -> (search_params) do      #scopeでsearchメソッドを定義。(search_params)は引数
-    return if search_params.blank?      #検索フォームに値がなければ以下の手順は行わない
+  # scope :search, -> (search_params) do      #scopeでsearchメソッドを定義。(search_params)は引数
+  #   return if search_params.blank?      #検索フォームに値がなければ以下の手順は行わない
 
-    name_search(search_params[:name])
-      .sex(search_params[:sex])
-      .age(search_params[:age])
-      .region(search_params[:region])   #下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
-  end
+  #   name_search(search_params[:name])
+  #     .sex(search_params[:sex])
+  #     .age(search_params[:age])
+  #     .region(search_params[:region])   #下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
+  # end
 
-  scope :name_search, -> {where('name LIKE ?', "%#{params[:name]}%") if name.present?}
-  scope :sex, -> {where("sex = ?", params[:sex]) if sex.present?}
-  scope :age, -> {where("age = ?", params[:age]) if age.present?}
-  scope :region, -> {where("region = ?", params[:region]) if region.present?}
+  # scope :name_search, -> (name){where('name LIKE ?', "%#{:name}%") if name.present?}
+  # scope :sex, -> (sex){where("sex = ?", :sex) if sex.present?}
+  # scope :age, -> (age){where("age = ?", :age) if age.present?}
+  # scope :region, -> (region){where("region = ?", :region) if region.present?}
 
   #フォロー機能
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
