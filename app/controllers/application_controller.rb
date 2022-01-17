@@ -17,10 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    root_path
-  end
-  def after_inactive_sign_up_path_for(resource)
-    root_path                  #ここを修正する
+    mypage_path
   end
 
   protect_from_forgery with: :exception
